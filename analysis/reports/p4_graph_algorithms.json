@@ -1,0 +1,359 @@
+{
+  "source": "source-derived projections; server aggregate cross-check separately",
+  "results": {
+    "seller_shared_products": {
+      "projection": "seller_shared_products",
+      "nodes": 3095,
+      "edges": 1061,
+      "isolates": 2309,
+      "components": 2423,
+      "giant_component_nodes": 390,
+      "giant_share": 0.126,
+      "mean_degree": 0.686,
+      "max_degree": 27,
+      "mean_weighted_degree": 1.226,
+      "diameter_giant": 18,
+      "aspl_giant": 6.5448,
+      "kcore_max": 7,
+      "centrality": {
+        "pagerank_vs_degree_spearman": 0.9881,
+        "pagerank_vs_degree_p": 0.0,
+        "pagerank_vs_weighted_degree_spearman": 0.9886,
+        "top10_by_degree": [
+          "b2ba3715d723d245138f291a6fe42594",
+          "620c87c171fb2a6dd6e8bb4dec959fc6",
+          "7e93a43ef30c4f03f38b393420bc753a",
+          "7d13fca15225358621be4086e1eb0964",
+          "9c0e69c7bf2619675bbadf47b43f655a",
+          "fa1c13f2614d7b5c4749cbc52fecda94",
+          "b33e7c55446eabf8fe1a42d037ac7d6d",
+          "8b28d096634035667e8263d57ba3368c",
+          "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "9d4db00d65d7760644ac0c14edb5fd86"
+        ],
+        "top10_by_pagerank": [
+          "b2ba3715d723d245138f291a6fe42594",
+          "620c87c171fb2a6dd6e8bb4dec959fc6",
+          "8b28d096634035667e8263d57ba3368c",
+          "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "7e93a43ef30c4f03f38b393420bc753a",
+          "ea8482cd71df3c1969d7b9473ff13abc",
+          "17e34d8224d27a541263c4c64b11a56b",
+          "7d13fca15225358621be4086e1eb0964",
+          "fe2032dab1a61af8794248c8196565c9",
+          "9d4db00d65d7760644ac0c14edb5fd86"
+        ],
+        "top10_by_weighted_degree": [
+          "4869f7a5dfa277a7dca6462dcf3b52b2",
+          "7e93a43ef30c4f03f38b393420bc753a",
+          "7d13fca15225358621be4086e1eb0964",
+          "fa1c13f2614d7b5c4749cbc52fecda94",
+          "9c0e69c7bf2619675bbadf47b43f655a",
+          "b33e7c55446eabf8fe1a42d037ac7d6d",
+          "8e6d7754bc7e0f22c96d255ebda59eba",
+          "e9779976487b77c6d4ac45f75ec7afe9",
+          "0b90b6df587eb83608a64ea8b390cf07",
+          "e9bc59e7b60fc3063eb2290deda4cced"
+        ],
+        "plain_count_matches": false
+      },
+      "betweenness_top5_unweighted": [
+        "b2ba3715d723d245138f291a6fe42594",
+        "612170e34b97004b3ba37eae81836b4c",
+        "8444e55c1f13cd5c179851e5ca5ebd00",
+        "620c87c171fb2a6dd6e8bb4dec959fc6",
+        "46dc3b2cc0980fb8ec44634e21d2718e"
+      ],
+      "betweenness_weight_vs_unweighted_spearman": 0.9246,
+      "kcore_top_core_size": 21
+    },
+    "seller_shared_categories": {
+      "projection": "seller_shared_categories",
+      "nodes": 3095,
+      "edges": 724613,
+      "isolates": 0,
+      "components": 1,
+      "giant_component_nodes": 3095,
+      "giant_share": 1.0,
+      "mean_degree": 468.247,
+      "max_degree": 2686,
+      "mean_weighted_degree": 530.948,
+      "diameter_giant": 3,
+      "aspl_giant": 1.8675,
+      "kcore_max": 491,
+      "louvain": {
+        "algorithm": "leiden 10 seeds (seeded initial membership) + deterministic multilevel cross-check",
+        "modularity_min": 0.3553,
+        "modularity_max": 0.3585,
+        "modularity_mean": 0.3574,
+        "multilevel_modularity": 0.3489,
+        "n_communities_min": 6,
+        "n_communities_max": 7,
+        "nmi_vs_seed0_min": 0.698,
+        "nmi_vs_seed0_max": 0.825,
+        "label_propagation_n_communities_range": [
+          1,
+          2
+        ]
+      },
+      "null_model": {
+        "reps": 20,
+        "null_modularity_mean": 0.0292,
+        "null_modularity_sd": 0.0007,
+        "permutation_p": 0.0476
+      },
+      "centrality": {
+        "pagerank_vs_degree_spearman": 0.9853,
+        "pagerank_vs_degree_p": 0.0,
+        "pagerank_vs_weighted_degree_spearman": 0.9927,
+        "top10_by_degree": [
+          "1da3aeb70d7989d1e6d9b0e887f97c23",
+          "b2ba3715d723d245138f291a6fe42594",
+          "4e922959ae960d389249c378d1c939f5",
+          "955fee9216a65b617aa5c0531780ce60",
+          "f8db351d8c4c4c22c6835c19a46f01b0",
+          "8b28d096634035667e8263d57ba3368c",
+          "44073f8b7e41514de3b7815dd0237f4f",
+          "6edacfd9f9074789dad6d62ba7950b9c",
+          "fd386aa7bed2af3c7035c65506c9b4a3",
+          "dfa0c4c6229ab200a4a1336b4d7128ff"
+        ],
+        "top10_by_pagerank": [
+          "1da3aeb70d7989d1e6d9b0e887f97c23",
+          "b2ba3715d723d245138f291a6fe42594",
+          "955fee9216a65b617aa5c0531780ce60",
+          "4e922959ae960d389249c378d1c939f5",
+          "f8db351d8c4c4c22c6835c19a46f01b0",
+          "6edacfd9f9074789dad6d62ba7950b9c",
+          "44073f8b7e41514de3b7815dd0237f4f",
+          "8b28d096634035667e8263d57ba3368c",
+          "70a12e78e608ac31179aea7f8422044b",
+          "fd386aa7bed2af3c7035c65506c9b4a3"
+        ],
+        "top10_by_weighted_degree": [
+          "1da3aeb70d7989d1e6d9b0e887f97c23",
+          "b2ba3715d723d245138f291a6fe42594",
+          "4e922959ae960d389249c378d1c939f5",
+          "955fee9216a65b617aa5c0531780ce60",
+          "f8db351d8c4c4c22c6835c19a46f01b0",
+          "8b28d096634035667e8263d57ba3368c",
+          "44073f8b7e41514de3b7815dd0237f4f",
+          "6edacfd9f9074789dad6d62ba7950b9c",
+          "70a12e78e608ac31179aea7f8422044b",
+          "fd386aa7bed2af3c7035c65506c9b4a3"
+        ],
+        "plain_count_matches": false
+      }
+    },
+    "seller_co_order": {
+      "projection": "seller_co_order",
+      "nodes": 3095,
+      "edges": 1151,
+      "isolates": 2270,
+      "components": 2343,
+      "giant_component_nodes": 651,
+      "giant_share": 0.2103,
+      "mean_degree": 0.744,
+      "max_degree": 42,
+      "mean_weighted_degree": 0.917,
+      "diameter_giant": 13,
+      "aspl_giant": 5.2117,
+      "kcore_max": 5,
+      "centrality": {
+        "pagerank_vs_degree_spearman": 0.9915,
+        "pagerank_vs_degree_p": 0.0,
+        "pagerank_vs_weighted_degree_spearman": 0.992,
+        "top10_by_degree": [
+          "4a3ca9315b744ce9f8e9374361493884",
+          "da8622b14eb17ae2831f4ac5b9dab84a",
+          "1900267e848ceeba8fa32d80c1a5f5a8",
+          "1835b56ce799e6a4dc4eddc053f04066",
+          "1f50f920176fa81dab994f9023523100",
+          "cca3071e3e9bb7d12640c9fbe2301306",
+          "6560211a19b47992c3666cc44a7e94c0",
+          "7a67c85e85bb2ce8582c35f2203ad736",
+          "1025f0e2d44d7041d6cf58b6550e0bfa",
+          "53e4c6e0f4312d4d2107a8c9cddf45cd"
+        ],
+        "top10_by_pagerank": [
+          "4a3ca9315b744ce9f8e9374361493884",
+          "1900267e848ceeba8fa32d80c1a5f5a8",
+          "da8622b14eb17ae2831f4ac5b9dab84a",
+          "1835b56ce799e6a4dc4eddc053f04066",
+          "6560211a19b47992c3666cc44a7e94c0",
+          "1f50f920176fa81dab994f9023523100",
+          "1025f0e2d44d7041d6cf58b6550e0bfa",
+          "cca3071e3e9bb7d12640c9fbe2301306",
+          "7a67c85e85bb2ce8582c35f2203ad736",
+          "3d871de0142ce09b7081e2b9d1733cb1"
+        ],
+        "top10_by_weighted_degree": [
+          "4a3ca9315b744ce9f8e9374361493884",
+          "1900267e848ceeba8fa32d80c1a5f5a8",
+          "1835b56ce799e6a4dc4eddc053f04066",
+          "da8622b14eb17ae2831f4ac5b9dab84a",
+          "1f50f920176fa81dab994f9023523100",
+          "cca3071e3e9bb7d12640c9fbe2301306",
+          "391fc6631aebcf3004804e51b40bcf1e",
+          "1025f0e2d44d7041d6cf58b6550e0bfa",
+          "6560211a19b47992c3666cc44a7e94c0",
+          "d2374cbcbb3ca4ab1086534108cc3ab7"
+        ],
+        "plain_count_matches": false
+      },
+      "betweenness_top5_unweighted": [
+        "1f50f920176fa81dab994f9023523100",
+        "4a3ca9315b744ce9f8e9374361493884",
+        "da8622b14eb17ae2831f4ac5b9dab84a",
+        "1900267e848ceeba8fa32d80c1a5f5a8",
+        "6560211a19b47992c3666cc44a7e94c0"
+      ],
+      "betweenness_weight_vs_unweighted_spearman": 0.9843,
+      "kcore_top_core_size": 19
+    },
+    "product_bought_together": {
+      "projection": "product_bought_together",
+      "nodes": 32951,
+      "edges": 4058,
+      "isolates": 28066,
+      "components": 29718,
+      "giant_component_nodes": 398,
+      "giant_share": 0.0121,
+      "mean_degree": 0.246,
+      "max_degree": 23,
+      "mean_weighted_degree": 0.272,
+      "diameter_giant": 29,
+      "aspl_giant": 10.1282,
+      "kcore_max": 7,
+      "centrality": {
+        "pagerank_vs_degree_spearman": 0.9948,
+        "pagerank_vs_degree_p": 0.0,
+        "pagerank_vs_weighted_degree_spearman": 0.9948,
+        "top10_by_degree": [
+          "99a4788cb24856965c36a24e339b6058",
+          "2136c70bbe723d338fab53da3c03e6dc",
+          "368c6c730842d78016ad823897a372db",
+          "422879e10f46682990de24d770e7f83d",
+          "53759a2ecddad2bb87a079a1f1519f73",
+          "3e5201fe0d1ba474d9b90152c83c706c",
+          "5dae498eff2d80057f56122235a36aff",
+          "0bcc3eeca39e1064258aa1e932269894",
+          "678c229b41c0e497d35a25a8be1cc631",
+          "b0c89945c034268074f5f80b362bda34"
+        ],
+        "top10_by_pagerank": [
+          "99a4788cb24856965c36a24e339b6058",
+          "35afc973633aaeb6b877ff57b2793310",
+          "53759a2ecddad2bb87a079a1f1519f73",
+          "422879e10f46682990de24d770e7f83d",
+          "368c6c730842d78016ad823897a372db",
+          "389d119b48cf3043d311335e499d9c6b",
+          "2136c70bbe723d338fab53da3c03e6dc",
+          "0bcc3eeca39e1064258aa1e932269894",
+          "ec2d43cc59763ec91694573b31f1c29a",
+          "d1c427060a0f73f6b889a5c7c61f2ac4"
+        ],
+        "top10_by_weighted_degree": [
+          "99a4788cb24856965c36a24e339b6058",
+          "36f60d45225e60c7da4558b070ce4b60",
+          "35afc973633aaeb6b877ff57b2793310",
+          "422879e10f46682990de24d770e7f83d",
+          "e53e557d5a159f5aa2c5e995dfdf244b",
+          "53759a2ecddad2bb87a079a1f1519f73",
+          "389d119b48cf3043d311335e499d9c6b",
+          "368c6c730842d78016ad823897a372db",
+          "0bcc3eeca39e1064258aa1e932269894",
+          "2136c70bbe723d338fab53da3c03e6dc"
+        ],
+        "plain_count_matches": false
+      }
+    },
+    "category_shared_sellers": {
+      "projection": "category_shared_sellers",
+      "nodes": 74,
+      "edges": 1435,
+      "isolates": 0,
+      "components": 1,
+      "giant_component_nodes": 74,
+      "giant_share": 1.0,
+      "mean_degree": 38.784,
+      "max_degree": 70,
+      "mean_weighted_degree": 288.919,
+      "diameter_giant": 3,
+      "aspl_giant": 1.4691,
+      "kcore_max": 34,
+      "louvain": {
+        "algorithm": "leiden 10 seeds (seeded initial membership) + deterministic multilevel cross-check",
+        "modularity_min": 0.0975,
+        "modularity_max": 0.1,
+        "modularity_mean": 0.0996,
+        "multilevel_modularity": 0.096,
+        "n_communities_min": 4,
+        "n_communities_max": 5,
+        "nmi_vs_seed0_min": 0.871,
+        "nmi_vs_seed0_max": 1.0,
+        "label_propagation_n_communities_range": [
+          1,
+          1
+        ]
+      },
+      "null_model": {
+        "reps": 20,
+        "null_modularity_mean": 0.0529,
+        "null_modularity_sd": 0.0044,
+        "permutation_p": 0.0476
+      },
+      "centrality": {
+        "pagerank_vs_degree_spearman": 0.9841,
+        "pagerank_vs_degree_p": 7.830182801546737e-56,
+        "pagerank_vs_weighted_degree_spearman": 0.9977,
+        "top10_by_degree": [
+          "utilidades_domesticas",
+          "moveis_decoracao",
+          "esporte_lazer",
+          "informatica_acessorios",
+          "cool_stuff",
+          "beleza_saude",
+          "automotivo",
+          "brinquedos",
+          "telefonia",
+          "papelaria"
+        ],
+        "top10_by_pagerank": [
+          "utilidades_domesticas",
+          "esporte_lazer",
+          "cool_stuff",
+          "beleza_saude",
+          "automotivo",
+          "informatica_acessorios",
+          "moveis_decoracao",
+          "brinquedos",
+          "ferramentas_jardim",
+          "bebes"
+        ],
+        "top10_by_weighted_degree": [
+          "utilidades_domesticas",
+          "esporte_lazer",
+          "cool_stuff",
+          "beleza_saude",
+          "automotivo",
+          "informatica_acessorios",
+          "moveis_decoracao",
+          "brinquedos",
+          "ferramentas_jardim",
+          "bebes"
+        ],
+        "plain_count_matches": false
+      },
+      "betweenness_top5_unweighted": [
+        "utilidades_domesticas",
+        "moveis_decoracao",
+        "informatica_acessorios",
+        "automotivo",
+        "esporte_lazer"
+      ],
+      "betweenness_weight_vs_unweighted_spearman": 0.132,
+      "kcore_top_core_size": 39
+    }
+  }
+}

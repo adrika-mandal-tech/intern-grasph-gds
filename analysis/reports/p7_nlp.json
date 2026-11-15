@@ -1,0 +1,51 @@
+{
+  "n_reviews_unique_id": 98410,
+  "n_with_message": 40641,
+  "n_with_title": 11517,
+  "mean_sentiment_by_score": {
+    "1": -0.063,
+    "2": -0.042,
+    "3": 0.009,
+    "4": 0.074,
+    "5": 0.122
+  },
+  "sentiment_vs_score_spearman_rho": 0.5504357998095949,
+  "sentiment_vs_score_p": 0.0,
+  "inconsistencies": 235,
+  "sample_inconsistencies": [
+    [
+      "1star_pos",
+      1,
+      0.2,
+      "Nem fizeram a nota fiscal "
+    ],
+    [
+      "5star_neg",
+      4,
+      -0.3333333333333333,
+      "Correios não entregou "
+    ],
+    [
+      "1star_pos",
+      2,
+      0.16666666666666666,
+      "Excelente produto indico a qualquer pessoa."
+    ],
+    [
+      "5star_neg",
+      5,
+      -0.18181818181818182,
+      "Recomendo para todos, não tive problema nenhum, mercadoria e prazo ótimos."
+    ],
+    [
+      "5star_neg",
+      4,
+      -0.2,
+      "Ainda não utilizei o produto"
+    ]
+  ],
+  "near_duplicate_pairs_found": 0,
+  "near_duplicate_pairs_checked": 819375921,
+  "near_duplicate_rate": 0.0,
+  "duplicate_review_ids": 0
+}

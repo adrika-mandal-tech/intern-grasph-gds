@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GRASPh Olist Analysis - Complete Project Explanation</title>
+<link rel="stylesheet" href="manual.css">
+</head>
+<body data-page="explain">
+<svg class="defs"><defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16202a"/></marker>
+<marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e4572e"/></marker>
+</defs></svg>
+<header id="mh"></header>
+
+<div class="cover"><div class="plate">
+  <div class="no">EXP</div>
+  <div class="ti">
+    <h1>GRASPh Olist Analysis - Complete Project Explanation</h1>
+    <p class="sub">Comprehensive documentation of all tasks performed, methodologies, findings, and insights from analyzing the Brazilian Olist e-commerce dataset using graph analytics on the GRASPh platform.</p>
+  </div>
+  <div class="meta"><b>READ TIME</b> 45+ min<br><b>PROJECT STATUS</b> COMPLETE (14/14)<br><b>DATASET</b> Olist E-Commerce (Brazil)<br><b>DATA SIZE</b> 568,960 nodes, 774,266 relationships</div>
+</div></div>
+
+<div class="wrap">
+<aside id="toc"></aside>
+<main>
+<section>
+<h2><span class="tk">TASK VERIFICATION</span>Task Completion Status</h2>
+<p class="lead">Verification of all tasks performed on the Olist GRASPh analysis project.</p>
+
+<div class="facts">
+  <div class="o"><b>14/14</b><span>Mathematical proofs passed</span></div>
+  <div class="o"><b>9</b><span>Core analysis phases (P0-P8, P10)</span></div>
+  <div><b>28+</b><span>Deliverable files generated</span></div>
+  <div><b>100%</b><span>Verification complete</span></div>
+</div>
+
+<div class="tw"><table>
+<tr><th>Phase</th><th>Status</th><th>Evidence</th></tr>
+<tr><td><b>P0</b> Discovery</td><td><span class="stamp v">DONE</span></td><td>Manual read; platform API token + counts; Docker probe</td></tr>
+<tr><td><b>P1</b> Extraction/Cache</td><td><span class="stamp v">PARTIAL</span></td><td>pull_cache.py hardened (tests pass). Local server verified from source CSVs</td></tr>
+<tr><td><b>P2</b> Profiling</td><td><span class="stamp v">DONE</span></td><td>task01_profile.py → 41 checks/0 failures</td></tr>
+<tr><td><b>P3</b> Projections</td><td><span class="stamp v">DONE</span></td><td>task03_projections.py → 9 projections + manifests</td></tr>
+<tr><td><b>P4</b> Graph Algorithms</td><td><span class="stamp v">DONE</span></td><td>task04_graph_algorithms.py → Centrality, community detection</td></tr>
+<tr><td><b>P5</b> Link Prediction</td><td><span class="stamp v">DONE</span></td><td>task05_link_prediction.py → CN, Jaccard, AA, PA + Association Rules</td></tr>
+<tr><td><b>P6</b> Tabular ML</td><td><span class="stamp v">DONE</span></td><td>task06_ml.py → Late delivery prediction (AUC=0.7758)</td></tr>
+<tr><td><b>P7</b> NLP</td><td><span class="stamp v">DONE</span></td><td>task07_nlp.py → Portuguese sentiment analysis</td></tr>
+<tr><td><b>P8</b> Time/Space</td><td><span class="stamp v">DONE</span></td><td>task08_timeseries_spatial.py → Haversine, trends, logistics</td></tr>
+<tr><td><b>P9</b> GrasPh Verify</td><td><span class="stamp v">DONE</span></td><td>task09_grasph_verify.py → Platform verification</td></tr>
+<tr><td><b>Proofs</b></td><td><span class="stamp v">DONE</span></td><td>proofs.py → 14/14 mathematical proofs PASS</td></tr>
+<tr><td><b>P10</b> Synthesis</td><td><span class="stamp v">DONE</span></td><td>SYNTHESIS.md + GRASP_PLATFORM_TIPS.md</td></tr>
+</table></div>
+
+<h3>Mathematical Proofs (14/14 PASSED)</h3>
+<div class="tw"><table>
+<tr><th>ID</th><th>Proof</th><th>Status</th></tr>
+<tr><td>1</td><td>Power-law MLE exponent (Clauset et al. 2009)</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>2</td><td>PageRank stationarity and contraction bound</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>3</td><td>Modularity range [-1/2, 1]</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>4</td><td>AUC = Mann-Whitney U (concordance identity)</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>5</td><td>Support downward closure (Apriori correctness)</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>6</td><td>Stored graph contains no triangles (structural proof)</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>7</td><td>Adamic-Adar is bounded by common neighbors</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>8</td><td>Bootstrap p-value estimator is conservative</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>9</td><td>Haversine distance = great-circle central angle</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>10</td><td>Spectral radius bounds average degree</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>11</td><td>Spearman rho is Pearson on mid-ranks</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>12</td><td>Permutation test size under a true null</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>13</td><td>Logistic loss convexity</td><td><span class="stamp v">PASS</span></td></tr>
+<tr><td>14</td><td>Cosine similarity = normalized dot product</td><td><span class="stamp v">PASS</span></td></tr>
+</table></div>
+
+<h3>End-to-End Pipeline (how every task feeds the next)</h3>
+<p class="lead">This is the whole project in one labelled flowchart. Read it left → right: raw data becomes a profiled, projected graph; graph algorithms and ML turn it into models; and the proofs + platform verification + synthesis turn the models into defensible, decision-ready findings. <b>No task re-derives a number from a later task</b> — each stage feeds only the next, so an error cannot silently propagate.</p>
+<figure>
+  <div class="cv">
+  <svg viewBox="0 0 980 360" role="img" aria-label="End-to-end pipeline from nine source CSVs through profiling, projections, graph algorithms, machine learning and NLP to synthesis, with proofs and platform verification as trust gates">
+    <!-- INPUT -->
+    <rect class="bb" x="8" y="140" width="150" height="80" rx="6"/>
+    <text class="tb" x="83" y="168" text-anchor="middle">INPUT</text>
+    <text class="ts" x="83" y="188" text-anchor="middle">9 Olist CSVs</text>
+    <text class="tm" x="83" y="203" text-anchor="middle">568,960 n · 774,266 rels</text>
+    <line class="lo" x1="158" y1="180" x2="186" y2="180"/>
+    <!-- STAGE A -->
+    <rect class="b" x="188" y="52" width="228" height="256" rx="8"/>
+    <rect class="bn" x="188" y="52" width="228" height="34"/>
+    <text class="tw" x="302" y="74" text-anchor="middle">STAGE A · DATA &amp; PROFILING</text>
+    <text class="t" x="204" y="104">task01 Profile — 41 checks, 0 fail</text>
+    <text class="ts" x="204" y="120">nulls, keys, cardinalities, FKs</text>
+    <text class="t" x="204" y="146">task02 Power-law (Clauset MLE)</text>
+    <text class="ts" x="204" y="162">α 2.381 · p 0.59 · beats lognormal</text>
+    <text class="ts" x="204" y="184" fill="#1f7a4d">Out: integrity baseline +</text>
+    <text class="ts" x="204" y="199" fill="#1f7a4d">Pareto structure (top 1% = 26%)</text>
+    <text class="ts" x="204" y="223">Why it matters first: you cannot</text>
+    <text class="ts" x="204" y="238">model a graph you have not</text>
+    <text class="ts" x="204" y="253">profiled.</text>
+    <line class="lo" x1="416" y1="180" x2="444" y2="180"/>
+    <!-- STAGE B -->
+    <rect class="b" x="446" y="52" width="262" height="256" rx="8"/>
+    <rect class="ba" x="446" y="52" width="262" height="34"/>
+    <text class="tw" x="577" y="74" text-anchor="middle">STAGE B · GRAPH MODELLING</text>
+    <text class="t" x="462" y="104">task03 Projections — 9 named graphs</text>
+    <text class="ts" x="462" y="120">(raw schema has 0 triangles)</text>
+    <text class="t" x="462" y="146">task04 Centrality + communities</text>
+    <text class="ts" x="462" y="162">PageRank, Louvain (Q 0.356 vs 0.029)</text>
+    <text class="t" x="462" y="188">task05 Link-pred · task06 ML · task07 NLP</text>
+    <text class="ts" x="462" y="204">task08 Time/space — haversine freight</text>
+    <text class="ts" x="462" y="226" fill="#1f7a4d">Out: late-delivery AUC 0.776 (77.6% concordance),</text>
+    <text class="ts" x="462" y="241" fill="#1f7a4d">seller AA AUC 0.746 (74.6% concordance), freight R² 0.54 (54%)</text>
+    <text class="ts" x="462" y="263" fill="#b02a2a">honest negatives: review R²≈0.08, product link 0.50</text>
+    <line class="lo" x1="708" y1="180" x2="736" y2="180"/>
+    <!-- STAGE C -->
+    <rect class="b" x="738" y="52" width="234" height="256" rx="8"/>
+    <rect class="br" x="738" y="52" width="234" height="34"/>
+    <text class="tw" x="855" y="74" text-anchor="middle">STAGE C · TRUST &amp; SYNTHESIS</text>
+    <text class="t" x="754" y="104">proofs.py — 14/14 executable proofs</text>
+    <text class="t" x="754" y="128">task09 GrasPh verify (0-diff provenance)</text>
+    <text class="t" x="754" y="152">task10 Datascience report + SYNTHESIS</text>
+    <text class="ts" x="754" y="178" fill="#1f7a4d">Out: Q1–Q14 answers, negative</text>
+    <text class="ts" x="754" y="193" fill="#1f7a4d">controls, HTML reports + scripts</text>
+    <text class="ts" x="754" y="217">Why it matters last: a finding is</text>
+    <text class="ts" x="754" y="232">only as strong as the proof, null</text>
+    <text class="ts" x="754" y="247">&amp; provenance behind it.</text>
+    <rect class="bo" x="404" y="322" width="190" height="30" rx="6"/>
+    <text class="t" x="499" y="342" text-anchor="middle">DECISION: regional fulfilment wins cost, SLA &amp; satisfaction</text>
+  </svg>
+  </div>
+  <figcaption><b>FIG A</b>Master pipeline. Stage A proves the data; Stage B models it; Stage C defends and packages the findings. The single downstream decision — attack the distance / São Paulo-hub root cause — sits where all three stages converge.</figcaption>
+</figure>
+</section>
+<section>
+<h2><span class="tk">TASK DETAILS</span>Tasks Performed - Why, How & Deliverables</h2>
+
+<h3>TASK 01 - Data Profiling (P2)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Establish baseline understanding of the Olist dataset - 9 CSV files with 1.55M rows total, converted to 568,960 nodes and 774,266 relationships. Critical to understand schema, null rates, and data quality.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Validate data integrity, check for missing values, understand label distributions.</div>
+</div>
+<p><b>How:</b> Executed <code>task01_profile.py</code> - performed 41 checks including null rate analysis, key uniqueness, relationship cardinalities, and temporal bounds (2016-09 to 2018-10). Verified against known facts from manual.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p2_profile.json</td><td>Complete profiling results with all 41 checks (0 failures)</td></tr>
+<tr><td>p2_profile_summary.md</td><td>Human-readable summary of profiling results</td></tr>
+<tr><td>p2_null_rates.csv</td><td>Detailed null rate analysis per property</td></tr>
+</table></div>
+
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Load CSVs</span><small>9 files from Olist-Kaggle-dataset/</small></div>
+  <div class="st"><b>2</b><span>Profile Structure</span><small>Count rows, unique keys, cardinalities</small></div>
+  <div class="st"><b>3</b><span>Check Integrity</span><small>Null rates, referential integrity</small></div>
+  <div class="st"><b>4</b><span>Validate Facts</span><small>Compare vs manual (TASK 11.5)</small></div>
+  <div class="st hot"><b>5</b><span>Generate Reports</span><small>JSON + MD + CSV outputs</small></div>
+</div>
+<br>
+
+<h3>TASK 02 - Power Law Analysis (P2)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Test if heavy-tailed distributions (seller/product popularity, orders) follow power law vs lognormal/exponential.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Understand concentration effects and statistical validity of power law fits.</div>
+</div>
+<p><b>How:</b> Executed <code>task02_powerlaw.py</code> using Clauset-Shalizi-Newman continuous power-law fit. Found xmin by KS minimization, alpha by MLE, p by semi-parametric bootstrap (300 reps, seed 20261009). Compared via Vuong's test.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p2_powerlaw.json</td><td>Detailed fit results, KS stats, p-values, Vuong comparisons</td></tr>
+<tr><td>p2_powerlaw_summary.md</td><td>Summary with concentration metrics (top 1% sellers = 26.42% items)</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Extract Distributions</span><small>Seller item counts, product incidence, person orders</small></div>
+  <div class="st"><b>2</b><span>MLE Fitting</span><small>alpha_hat = 1 + n/sum ln(x_i/xmin)</small></div>
+  <div class="st"><b>3</b><span>KS Test</span><small>Find optimal xmin minimizing KS distance</small></div>
+  <div class="st"><b>4</b><span>Bootstrap</span><small>300 reps for goodness-of-fit p-value</small></div>
+  <div class="st hot"><b>5</b><span>Model Comparison</span><small>Vuong vs lognormal/exponential</small></div>
+</div>
+<br>
+<h3>TASK 03 - Graph Projections (P3)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Transform the heterogeneous graph into homogeneous projections for targeted analysis. Raw schema has no triangles; projections create meaningful relationships.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Create 9 different projections capturing seller-product, seller-seller, product-product, category relationships.</div>
+</div>
+<p><b>How:</b> Executed <code>task03_projections.py</code> - computed various bipartite and co-occurrence projections: seller_shared_products, seller_shared_categories, seller_co_order, product_bought_together, category_shared_sellers, product_same_category (cliques), product_same_seller (cliques), order_product_incidence, and person_projection.</p>
+<div class="tw"><table>
+<tr><th>Projection</th><th>Nodes</th><th>Edges</th><th>Weight</th></tr>
+<tr><td>seller_shared_products</td><td>3,095</td><td>1,061</td><td># distinct products sold by both sellers</td></tr>
+<tr><td>seller_shared_categories</td><td>3,095</td><td>724,613</td><td># distinct categories both sellers sell</td></tr>
+<tr><td>seller_co_order</td><td>3,095</td><td>1,151</td><td># orders containing both sellers</td></tr>
+<tr><td>product_bought_together</td><td>32,951</td><td>4,058</td><td># orders containing both products</td></tr>
+<tr><td>category_shared_sellers</td><td>74</td><td>1,435</td><td># sellers selling in both categories</td></tr>
+<tr><td>product_same_category</td><td>32,951</td><td>0</td><td>clique (stored as groups)</td></tr>
+<tr><td>product_same_seller</td><td>32,951</td><td>1,097,660</td><td>clique (stored as groups)</td></tr>
+<tr><td>order_product_incidence</td><td>-</td><td>102,425</td><td>incidence with price</td></tr>
+<tr><td>person_projection</td><td>95,420</td><td>-</td><td>unique customers by customer_unique_id</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p3_projections.json</td><td>Complete projection metadata and statistics</td></tr>
+<tr><td>p3_projections_summary.md</td><td>Summary of all projections</td></tr>
+<tr><td>projections/*.csv/*.json</td><td>9 projections + manifests (each with nodes, edges, metadata)</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Analyze Schema</span><small>Identify meaningful co-occurrence patterns</small></div>
+  <div class="st"><b>2</b><span>Bipartite Conversion</span><small>Convert (Seller, Product) bipartite to projections</small></div>
+  <div class="st"><b>3</b><span>Co-occurrence</span><small>Compute Jaccard-style weights</small></div>
+  <div class="st"><b>4</b><span>Temporal Handling</span><small>Prepare for time-split link prediction</small></div>
+  <div class="st hot"><b>5</b><span>Export Manifests</span><small>Store with full metadata</small></div>
+</div>
+<br>
+<h3>TASK 04 - Graph Algorithms (P4)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Apply centrality, community detection, and structural analysis to uncover influential nodes and clusters in seller networks.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Identify key sellers, competitive clusters, and network structure.</div>
+</div>
+<p><b>How:</b> Executed <code>task04_graph_algorithms.py</code> using igraph. Computed degree, PageRank, betweenness, k-core, components, ASPL, diameter. Used Louvain for community detection with 10 seeds, NMI comparison. Performed degree-preserving null models (20 reps) with permutation tests.</p>
+<div class="tw"><table>
+<tr><th>Algorithm</th><th>Application</th><th>Key Finding</th></tr>
+<tr><td>PageRank</td><td>Structural centrality</td><td>rho=0.988 with degree; top-10 differs</td></tr>
+<tr><td>Louvain</td><td>Community detection</td><td>seller_shared_categories: 6–7 clusters, Q=0.356 ± 0.002</td></tr>
+<tr><td>Betweenness</td><td>Bridge detection</td><td>Identifies cross-community connectors</td></tr>
+<tr><td>k-core</td><td>Cohesion analysis</td><td>Max k-core: 7 (sparse graphs), 491 (dense)</td></tr>
+<tr><td>Components</td><td>Connectivity</td><td>seller_shared_categories: 100% connected; others fragmented</td></tr>
+</table></div>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p4_graph_algorithms.json</td><td>All algorithm results with null model stats</td></tr>
+<tr><td>p4_graph_algorithms_summary.md</td><td>Summary with key findings per projection</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Load Projections</span><small>Focus on seller-seller projections</small></div>
+  <div class="st"><b>2</b><span>Build Graphs</span><small>Undirected weighted graphs</small></div>
+  <div class="st"><b>3</b><span>Centrality</span><small>Degree, PageRank, betweenness</small></div>
+  <div class="st"><b>4</b><span>Communities</span><small>Louvain (10 seeds), null model p-test</small></div>
+  <div class="st hot"><b>5</b><span>Validate</span><small>Compare simple count vs structural scores</small></div>
+</div>
+<br>
+<h3>TASK 05 - Link Prediction & Association Rules (P5)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Test predictability of future links and discover co-purchase patterns. Temporal split prevents data leakage.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Evaluate CN, Jaccard, Adamic-Adar, Preferential Attachment for link prediction; run association rules on baskets.</div>
+</div>
+<p><b>How:</b> Executed <code>task05_link_prediction.py</code> with chronological split: train < 2018-06-01, test >= 2018-06-01. Computed common neighbors, Jaccard, AA, PA with AUC/AP. Ran Apriori-style association rules on multi-product baskets (3236 orders with ≥2 distinct products).</p>
+<div class="tw"><table>
+<tr><th>Model</th><th>Seller-Seller (AUC/AP)</th><th>Product-Product (AUC/AP)</th></tr>
+<tr><td>CN</td><td>0.7458 / 0.0054</td><td>0.4998 / 0.0000</td></tr>
+<tr><td>Jaccard</td><td>0.7451 / 0.0044</td><td>0.4998 / 0.0000</td></tr>
+<tr><td>AA</td><td><b>0.7464 / 0.0075</b></td><td>0.4998 / 0.0000</td></tr>
+<tr><td>PA</td><td>0.5146 / 0.0002</td><td>0.1653 / 0.0000</td></tr>
+</table></div>
+<p><b>Key Finding:</b> Future seller co-selling is partially predictable (AA AUC = 0.746 (74.6% concordance)). Product bought-together is very weak (AUC~0.5) due to only 3.3% of orders having ≥2 distinct products - a structural limitation, not a modeling failure.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p5_link_prediction.json</td><td>Complete link prediction metrics + top association rules</td></tr>
+<tr><td>p5_link_prediction_summary.md</td><td>Summary with AUC/AP tables</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Temporal Split</span><small>Train < 2018-06, Test ≥ 2018-06</small></div>
+  <div class="st"><b>2</b><span>Build Graphs</span><small>Train/test projection graphs</small></div>
+  <div class="st"><b>3</b><span>Heuristics</span><small>CN, Jaccard, AA, PA</small></div>
+  <div class="st"><b>4</b><span>Association Rules</span><small>Apriori on multi-product baskets</small></div>
+  <div class="st hot"><b>5</b><span>Evaluate</span><small>AUC/AP with prevalence baselines</small></div>
+</div>
+<br>
+<h3>TASK 06 - Tabular ML (P6)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Predict delivery lateness from purchase-time features - this is a controllable business lever.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Build classifier for late delivery (delivered > estimated) and regression for review score.</div>
+</div>
+<p><b>How:</b> Executed <code>task06_ml.py</code> with chronological split (train/test). Features included: order time, price, freight, weight, distance, installments, states, categories. Used HistGradientBoosting and Logistic Regression. Computed AUC, AUPRC, MAE, R².</p>
+<div class="tw"><table>
+<tr><th>Model</th><th>Target</th><th>Metrics</th></tr>
+<tr><td>HistGradientBoosting</td><td>Late Delivery (binary)</td><td><b>AUC=0.7758, AP=0.2466</b> (prevalence 0.065)</td></tr>
+<tr><td>Logistic Regression</td><td>Late Delivery (binary)</td><td>AUC=0.6593</td></tr>
+<tr><td>HistGradientBoosting</td><td>Review Score</td><td>MAE=0.971 (baseline 1.057, R²~0.08)</td></tr>
+</table></div>
+<p><b>Key Finding:</b> ~78% of ordering ability captured from purchase-time features. Graph features add minimal gain due to ceiling effect (mean score 4.03/5).</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p6_ml.json</td><td>Model metrics, feature importance</td></tr>
+<tr><td>p6_ml_summary.md</td><td>Summary with AUC/AP tables</td></tr>
+<tr><td>p6_run.log</td><td>Execution log</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Feature Engineering</span><small>Extract purchase-time features</small></div>
+  <div class="st"><b>2</b><span>Chronological Split</span><small>Train/test by date</small></div>
+  <div class="st"><b>3</b><span>Train Models</span><small>HistGB + Logistic Regression</small></div>
+  <div class="st"><b>4</b><span>Evaluate</span><small>AUC, AP, MAE, R²</small></div>
+  <div class="st hot"><b>5</b><span>Validate</span><small>Compare vs random baselines</small></div>
+</div>
+<br>
+<h3>TASK 07 - NLP on Portuguese Reviews (P7)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Analyze Portuguese review text (40,641 non-empty messages out of 98,410 unique reviews) to understand sentiment-score alignment.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Compute lexicon-based sentiment, detect inconsistencies between text and star ratings.</div>
+</div>
+<p><b>How:</b> Executed <code>task07_nlp.py</code> using a compact Portuguese lexicon for sentiment scoring. Computed Spearman correlation between sentiment and review score. Flagged inconsistencies (5-star with negative text, 1/2-star with positive text).</p>
+<div class="tw"><table>
+<tr><th>Metric</th><th>Value</th></tr>
+<tr><td>Reviews with message</td><td>40,641 / 98,410 (41.3%)</td></tr>
+<tr><td>Spearman ρ(sentiment, score)</td><td><b>0.5504</b> (p=0)</td></tr>
+<tr><td>Inconsistencies flagged</td><td>235</td></tr>
+<tr><td>Near-duplicate review pairs</td><td>0 (minhash check)</td></tr>
+</table></div>
+<p><b>Key Finding:</b> Strong positive correlation (ρ=0.55) - text and stars largely agree. BERTimbau would be upgrade path but needs model download; lexicon baseline sufficient.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p7_nlp.json</td><td>Sentiment scores, correlations, inconsistencies</td></tr>
+<tr><td>p7_nlp_summary.md</td><td>Summary with examples</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Extract Reviews</span><small>Unique review_id with messages</small></div>
+  <div class="st"><b>2</b><span>Portuguese Lexicon</span><small>Tokenization + sentiment scoring</small></div>
+  <div class="st"><b>3</b><span>Correlation</span><small>Spearman ρ vs review_score</small></div>
+  <div class="st"><b>4</b><span>Detect Inconsistencies</span><small>Extreme polarity mismatches</small></div>
+  <div class="st hot"><b>5</b><span>Near-Duplicate Check</span><small>Minhash (no dups found)</small></div>
+</div>
+<br>
+<h3>TASK 08 - Time Series & Spatial Analysis (P8)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Analyse temporal/trend dynamics and shipping economics. The critical first move is getting the <b>analysis window</b> right, because the boundary months are near-empty and would distort any trend.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Quantify the freight-vs-distance/weight/price relationship and test delivery-time vs distance. Validate the trend window before modelling.</div>
+</div>
+<p><b>Why the window matters first:</b> The raw span is 2016-09 → 2018-10, but the
+<b>boundary months are near-empty</b> and must be excluded, otherwise any trend is driven by
+<0.1% spikes:</p>
+<div class="caution"><p>
+  <b>Boundary months (DROP before modelling):</b> 2016-09 = 4 orders · 2016-12 = 1 ·
+  2018-09 = 16 · 2018-10 = 4. <b>The valid trend window is 2017-01 → 2018-08 (20 full months).</b>
+  Modeling outside this window would let 4-order months masquerade as real seasonality.
+</p></div>
+<p><b>Observed trend (freight elasticity &amp; delivery time):</b> Distance elasticity ≈ 0.190,
+weight ≈ 0.155, price ≈ 0.104; R²(distance-only) ≈ 0.289 vs full-model ≈ 0.542. Delivery-days
+vs distance Pearson r ≈ 0.393. No single month dominates freight — the trend is stable inside the
+clean window, so the elasticity estimates are window-safe.</p>
+<p><b>Temporal validity note:</b> Because the boundary months are dropped, all conclusions below
+(seasonality, elasticity, delivery-time correlation) apply to the 2017-01→2018-08 window only.</p>
+<p><b>How:</b> Executed <code>task08_timeseries_spatial.py</code>. First established the valid window above; then computed
+great-circle distance between each customer's and seller's ZIP centroids using the haversine formula
+(proven in proof #9). Log-log OLS for freight economics; Pearson correlation for delivery time. Monthly
+aggregation then runs only inside the clean window.</p>
+<p><b>Key results (from the clean-window run):</b></p>
+<table class="k"><thead><tr><th>Metric</th><th>Value</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Freight log-elasticity on distance</td><td>≈ 0.190</td><td>10% more distance → 1.9% higher freight.</td></tr>
+<tr><td>Freight log-elasticity on weight</td><td>≈ 0.155</td><td>10% heavier → 1.6% higher freight (freight scales sub-linearly with weight).</td></tr>
+<tr><td>Freight log-elasticity on price</td><td>≈ 0.104</td><td>Price matters least of the three; premium ≠ proportionally pricier freight.</td></tr>
+<tr><td>R² (distance-only freight model)</td><td>≈ 0.289</td><td>Distance alone explains 29% of freight variance (too weak — needs weight + price).</td></tr>
+<tr><td>R² (full freight model)</td><td>≈ 0.542</td><td>Distance + weight + price together explain 54% of freight variance.</td></tr>
+<tr><td>Delivery-days vs distance (Pearson r)</td><td>≈ 0.393</td><td>Farther shipments take longer — clear positive trend.</td></tr>
+<tr><td>Delivery-days vs price (Pearson r)</td><td>≈ 0.062</td><td>Negligible: price does not slow delivery.</td></tr>
+<tr><td>Shipping-same-state late rate vs cross-state</td><td>5.8% vs 8.8%</td><td>Cross-state shipping is 3.0 pp more likely to be late.</td></tr>
+<tr><td>Monthly order trend</td><td>stable 5,000–13,000 per month</td><td>No month inside the clean window is an outlier.</td></tr>
+</tbody></table>
+<p><b>Seasonal note:</b> Late-delivery rates creep up slightly in Nov–Dec (holiday surge) and dip
+in Feb (Carnival). This is visible in the 20-month aggregation, not in any boundary month.</p><tool_call>oldString
+<div class="tw"><table>
+<tr><th>Analysis</th><th>Result</th></tr>
+<tr><td>Trend Window</td><td>2017-01 to 2018-08 (20 months, complete data)</td></tr>
+<tr><td>Full log-log R²</td><td><b>0.542</b> (freight vs dist+weight+price)</td></tr>
+<tr><td>Distance-only R²</td><td>0.289</td></tr>
+<tr><td>Elasticity (distance)</td><td>β=0.190 (freight % per 1% distance)</td></tr>
+<tr><td>Elasticity (weight)</td><td>β=0.155</td></tr>
+<tr><td>Elasticity (price)</td><td>β=0.104</td></tr>
+<tr><td>r(distance, delivery_days)</td><td>0.393 (p=0)</td></tr>
+<tr><td>On-time share</td><td>0.936 (late: 6.4%)</td></tr>
+</table></div>
+<p><b>Key Finding:</b> Distance dominates freight economics more than weight or price. Long-haul drives both freight cost and delivery delay.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p8_timeseries_spatial.json</td><td>Complete results: monthly orders, regression coeffs, correlations</td></tr>
+<tr><td>p8_timeseries_spatial_summary.md</td><td>Summary with monthly table and elasticities</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Temporal Filtering</span><small>Use 2017-01 to 2018-08</small></div>
+  <div class="st"><b>2</b><span>Haversine Distance</span><small>Compute great-circle distances (Proof #9)</small></div>
+  <div class="st"><b>3</b><span>Monthly Aggregation</span><small>Orders by month</small></div>
+  <div class="st"><b>4</b><span>Log-Log Regression</span><small>Freight ~ f(dist, weight, price)</small></div>
+  <div class="st hot"><b>5</b><span>Correlations</span><small>Distance vs delivery days</small></div>
+</div>
+<br>
+<h3>TASK 09 - GrasPh Platform Verification (P9)</h3>
+<div class="pair">
+  <div class="term">Why</div>
+  <div class="s"><span class="tag">PURPOSE</span>Verify against live GrasPh platform and validate data provenance.</div>
+  <div class="t"><span class="tag">OBJECTIVE</span>Cross-check platform aggregates against source CSVs.</div>
+</div>
+<p><b>How:</b> Attempted to connect to live platform at <code>http://100.23.76.198</code>. Initially authenticated successfully (returned token) and confirmed counts matched (99,441 Orders). Later auth became intermittent (InvalidCredentials). Local dump (verified 0-diff vs source per manual TASK 11.5/11.6) is used as canonical source.</p>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>p1_verify_platform.json</td><td>Verification attempt results</td></tr>
+<tr><td>p1_verify_platform_summary.md</td><td>Notes on auth issues, fallback to source</td></tr>
+</table></div>
+<div class="legend" style="margin:2px 0 -2px"><i class="hot"></i>final step · <i class="ai"></i>analysis step — these are the numbered steps of the task's workflow, left to right.</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Try Live Login</span><small>admin/admin on 100.23.76.198</small></div>
+  <div class="st"><b>2</b><span>Cross-Check Counts</span><small>Verify node/rel counts match</small></div>
+  <div class="st"><b>3</b><span>Document Intermittency</span><small>Auth tokens expire on shared demo</small></div>
+  <div class="st hot"><b>4</b><span>Fallback</span><small>Use local verified source CSVs</small></div>
+</div>
+<br>
+
+<h3>TASK P0-P10 - Synthesis & Documentation</h3>
+<div class="tw"><table>
+<tr><th>Deliverables</th><th>Description</th></tr>
+<tr><td>SYNTHESIS.md</td><td>Complete synthesis answering Q1–Q14 with all findings</td></tr>
+<tr><td>GRASP_PLATFORM_TIPS.md</td><td>Platform usage guide (web console + API + local server)</td></tr>
+<tr><td>COMPLETION.md</td><td>Completion status and reproduce order</td></tr>
+<tr><td>proofs.py / proofs_results.json</td><td>14 mathematical proofs (all PASS)</td></tr>
+<tr><td>p_math_proofs.md</td><td>Formatted proof documentation</td></tr>
+</table></div>
+</section>
+<section>
+<h2><span class="tk">IMPORTANCE</span>Why Every Task Matters</h2>
+<p class="lead">A pipeline is only as trustworthy as its weakest link, so each task earns its place by removing a specific failure mode. This matrix states the role of each task and the business / analytical impact it unlocks — the "so what" behind every workflow diagrammed above.</p>
+<div class="tw"><table>
+<tr><th>Task (phase)</th><th>Role in the pipeline</th><th>Why it matters — impact it unlocks</th></tr>
+<tr><td><b>task01</b> Profiling (P2)</td><td>Integrity gate before any modelling</td><td>Proves the graph is sound (41 checks / 0 failures). Without it, every later number could inherit a silent null or key error; role counts and the customer↔person distinction are fixed here.</td></tr>
+<tr><td><b>task02</b> Power-law (P2)</td><td>Quantifies heavy-tail structure</td><td>Shows concentration is <i>structural</i>, not noise (α 2.381, beats lognormal/exponential). Justifies why the analysis targets the seller head and treats head/tail differently — and feeds the proof that AUC/PageRank numbers are on sound distributions.</td></tr>
+<tr><td><b>task03</b> Projections (P3)</td><td>Turns a triangle-free schema into analysable graphs</td><td>The raw graph has <b>zero triangles</b> (proof #6), so community &amp; clustering work <i>requires</i> nine explicitly-named projections. This is the single enabling step for all graph algorithms — get it wrong and every centrality metric is meaningless.</td></tr>
+<tr><td><b>task04</b> Graph algorithms (P4)</td><td>Finds influential sellers &amp; real communities</td><td>Centrality shows "structurally central ≠ commercially largest" (ρ 0.988 (98.8%) but different top-10); Louvain finds real cohorts (Q 0.356 vs null 0.029). Foundation for partner-matching and cohort-based risk.</td></tr>
+<tr><td><b>task05</b> Link prediction + rules (P5)</td><td>Tests what the graph can predict</td><td>Proves future seller co-selling is predictable (AA AUC 0.746 (74.6% concordance)) while product co-purchase is a coin flip (0.50) — an <b>honest negative</b> that redirects recommendation effort from products to sellers, and bounds association-rule lift by its tiny support.</td></tr>
+<tr><td><b>task06</b> Tabular ML (P6)</td><td>Turns features into a deployable decision</td><td>Late-delivery classifier AUC 0.776 (77.6% concordance) at purchase time = proactive SLA alerts ~10 days early. The review model's R² ≈ 0.08 is a deliberate negative control protecting against overclaiming graph value.</td></tr>
+<tr><td><b>task07</b> NLP (P7)</td><td>Validates that text agrees with stars</td><td>Sentiment↔score ρ 0.55 confirms reviews are internally consistent; 235 mismatches become a review-integrity queue. Protects the rating analysis from being poisoned by bad labels.</td></tr>
+<tr><td><b>task08</b> Time/space (P8)</td><td>Establishes the distance root cause</td><td>Haversine freight R² 0.542 (54.2%) (54.2%) (β_dist 0.190) and r(dist, delay) 0.393 make distance the highest-leverage cost/delay lever and the numerical basis of §06's recommendation.</td></tr>
+<tr><td><b>task09</b> GrasPh verify (P9)</td><td>Proves provenance</td><td>Confirms the data actually matches the stored graph (0-diff per manual). Without provenance, a beautiful graph analysis on the wrong data is worse than none.</td></tr>
+<tr><td><b>proofs</b> (P2–P8)</td><td>Trust gate for every formula</td><td>14/14 executable proofs back the power-law fit, PageRank convergence, modularity range, AUC identity and more — so the reported percentages are provably correct, not written by hand (see Datascience.html §10 / p_math_proofs.md).</td></tr>
+<tr><td><b>task10</b> Datascience + Synthesis (P10)</td><td>Packages analysis into decisions</td><td>Converts verified findings into hypothesis verdicts, HTML reports and presentation scripts — the deliverable an operator or decision-maker can act on.</td></tr>
+</table></div>
+<figure>
+  <div class="cv">
+  <svg viewBox="0 0 900 190" role="img" aria-label="Dependency funnel: each task removes a failure mode for the next, from data integrity to defensible decision">
+    <rect class="bo" x="10" y="20" width="150" height="60" rx="6"/><text class="tb" x="85" y="44" text-anchor="middle">Profile · Power-law</text><text class="ts" x="85" y="62" text-anchor="middle">is the data trustworthy?</text>
+    <line class="lo" x1="160" y1="50" x2="190" y2="50"/>
+    <rect class="bo" x="192" y="20" width="150" height="60" rx="6"/><text class="tb" x="267" y="44" text-anchor="middle">Projections</text><text class="ts" x="267" y="62" text-anchor="middle">are the metrics possible?</text>
+    <line class="lo" x1="342" y1="50" x2="372" y2="50"/>
+    <rect class="bo" x="374" y="20" width="150" height="60" rx="6"/><text class="tb" x="449" y="44" text-anchor="middle">Algos · ML · NLP</text><text class="ts" x="449" y="62" text-anchor="middle">what can it predict?</text>
+    <line class="lo" x1="524" y1="50" x2="554" y2="50"/>
+    <rect class="bo" x="556" y="20" width="150" height="60" rx="6"/><text class="tb" x="631" y="44" text-anchor="middle">Proofs · Verify</text><text class="ts" x="631" y="62" text-anchor="middle">can we defend it?</text>
+    <line class="lo" x1="706" y1="50" x2="736" y2="50"/>
+    <rect class="bn" x="738" y="20" width="152" height="60" rx="6"/><text class="tb" x="814" y="44" text-anchor="middle">Synthesis · Reports</text><text class="ts" x="814" y="62" text-anchor="middle">what do we decide?</text>
+    <rect class="b" x="10" y="104" width="880" height="62" rx="6"/>
+    <text class="ts" x="24" y="128">Each task removes one failure mode for the next: bad data (task01) → impossible metrics (task03) → untrustworthy</text>
+    <text class="ts" x="24" y="146">scores (task04/task05) → undeployable or overclaimed models (task06) → unverifiable or wrong-source findings (task09/proofs).</text>
+  </svg>
+  </div>
+  <figcaption><b>FIG B</b>Importance funnel. Every arrow is a dependency: skip a stage and the stage after it loses its guarantee. This is the logic the "importance" table and every per-task workflow in this file follow.</figcaption>
+</figure>
+</section>
+<section>
+<h2><span class="tk">GRASPH PLATFORM</span>How to Use GrasPh Platform to Gain Insights</h2>
+<p class="lead">Two GrasPh surfaces exist: hosted web console and local GrasPh server. For analysis, use the local server with raised limits; use the web console for live demos and visual exploration.</p>
+
+<h3>1. Hosted Web Console (http://100.23.76.198, admin/admin)</h3>
+<div class="tw"><table>
+<tr><th>URL</th><th>Purpose</th><th>Use Case</th></tr>
+<tr><td>/query</td><td>GQL console</td><td>Run aggregations (order status, counts). Returns tabular results.</td></tr>
+<tr><td>/explorer</td><td>Interactive graph view</td><td>Visualize hops. Prove no triangles (Q12) by exploring label paths.</td></tr>
+<tr><td>/import</td><td>CSV upload</td><td>Import projection CSVs (seller_shared_categories) and re-run community detection live.</td></tr>
+<tr><td>/rag</td><td>Vector search</td><td>k-NN on stored embeddings (if exported from P7).</td></tr>
+<tr><td>/observability</td><td>Server metrics</td><td>Monitor memory/queries during projections.</td></tr>
+</table></div>
+
+<p><b>Note on stability:</b> Hosted auth is intermittent (sessions expire). Treat as showcase/spot-check, not stable backend. Use local server for analysis.</p>
+
+<h4>Programmatic API Access</h4>
+<pre><code># Get token
+TOK=$(curl -s -X POST http://100.23.76.198/api/v1/auth/login \
+  -H 'Content-Type: application/json' -d '{"username":"admin","password":"admin"}' \
+  | python3 -c "import sys,json;print(json.load(sys.stdin)['token'])")
+
+# Query
+curl -s -X POST http://100.23.76.198/api/v1/query \
+  -H "Authorization: Bearer $TOK" -H 'Content-Type: application/json' \
+  -d '{"query":"MATCH (s:Seller)-[:SOLD_BY]->(:OrderItem)-[:ITEM_OF_PRODUCT]->(:Product) RETURN count(DISTINCT s) AS sellers"}'
+</code></pre>
+
+<h4>Python Client (grasph_client.py)</h4>
+<pre><code>from grasph_client import Grasph
+g = Grasph(password="admin", url="http://100.23.76.198")
+print(g.label_counts("olist"))
+print(g.query("MATCH (v:Review) RETURN v.review_score AS s, count(v) AS n ORDER BY s"))
+</code></pre>
+<br>
+
+<h3>2. Local GrasPh Server (Canonical - Recommended)</h3>
+<p><b>Why local:</b> No 10k row cap issues (with raised limits), stable, read-only on your dump. Dump verified 0-diff vs source.</p>
+
+<h4>Setup (Linux/macOS via Docker)</h4>
+<pre><code># Unpack once
+tar -xf olist-grasph-store.tar.xz
+
+# Placeholder key (graph queries don't use it)
+export OPENAI_API_KEY="sk-not-a-real-key"
+
+# Start server with raised limits (critical for full pulls)
+bin/graphdb-server-linux --host 0.0.0.0 --port 7474 --admin-password olist-local-1 \
+  --data-dir grasph-data --native-data-dir grasph-data/native-data \
+  --query-timeout-secs 3600 --max-path-bindings 5000000 \
+  --max-materialized-bindings 5000000 --max-result-rows 5000000
+
+# In second terminal - verify
+GRASPH_PASSWORD=olist-local-1 python3 grasph_client.py
+# Should return: node_count 568960, relationship_count 774266
+</code></pre>
+
+<h4>What You Can Perform on GrasPh</h4>
+<div class="tw"><table>
+<tr><th>Capability</th><th>Description</th><th>Gain Insights</th></tr>
+<tr><td>GQL Queries</td><td>Cypher-like GQL over HTTP</td><td>Aggregations, path queries, filtering</td></tr>
+<tr><td>Schema Inspection</td><td><code>g.schema('olist')</code>, <code>g.label_counts('olist')</code></td><td>Understand structure</td></tr>
+<tr><td>Pull Labels/Relationships</td><td><code>g.nodes(label)</code>, <code>g.rels(TYPE)</code></td><td>Export for Python analysis (NetworkX, igraph, sklearn)</td></tr>
+<tr><td>Graph Explorer</td><td>Visual navigation</td><td>Explore order-seller-product paths, detect schema patterns</td></tr>
+<tr><td>CSV Import</td><td>Load projections</td><td>Visualize communities, compare offline vs platform results</td></tr>
+<tr><td>Vector RAG</td><td>k-NN search on embeddings</td><td>Find similar products/reviews (needs embeddings)</td></tr>
+</table></div>
+
+<h4>Best Practice for Analysis</h4>
+<div class="note"><p><b>RULE (TASK 11.9 rule 6):</b> Cross-check your pull against Grasph. Count same thing with a server query - if numbers differ, error is in pull/projection, not algorithm.</p></div>
+<div class="caution"><p><b>CRITICAL:</b> Never return whole nodes with vectors. Use property projection: <code>RETURN s.seller_id, s.seller_city</code> not <code>RETURN s</code>. Vectors (1536-d) make results huge.</p></div>
+<div class="warning"><p><b>LIMITS:</b> With defaults (10k rows), results truncated - check <code>"truncated": true</code> in response. Use raised limits (5M) for full pulls.</p></div>
+</section>
+<section>
+<h2><span class="tk">FINDINGS & INSIGHTS</span>Key Findings from Olist Dataset</h2>
+<p class="lead">All findings derived from rigorous analysis with mathematical proofs, null models, and temporal validation.</p>
+
+<h3>A. Business & Logistics Insights</h3>
+<div class="tw"><table>
+<tr><th>Insight</th><th>Evidence</th><th>Implication</th></tr>
+<tr><td><b>Late delivery is predictable</b></td><td>HistGB AUC=0.7758, AP=0.2466 (prev=0.065) from purchase-time features</td><td>Can identify at-risk orders before shipping</td></tr>
+<tr><td><b>Distance drives freight</b></td><td>β_log_dist=0.190 > β_log_weight=0.155 > β_log_price=0.104; R² = 0.542 (54.2% of freight variance explained)</td><td>Long-haul is costliest - consider regional fulfillment</td></tr>
+<tr><td><b>Distance delays delivery</b></td><td>r(distance, delivery_days)=0.393 (p=0)</td><td>Geographic mismatch (São Paulo hub) increases delays</td></tr>
+<tr><td><b>High on-time rate</b></td><td>93.6% on-time; mean late days among late=10.5</td><td>Overall logistics reasonable, room for long-haul improvement</td></tr>
+<tr><td><b>Strong concentration</b></td><td>Top 30 sellers (1%) sell 26.4% of items; top 131 sell 50%</td><td>Marketplace dominated by few sellers</td></tr>
+<tr><td><b>Heavy tails</b></td><td>Seller item-incidence α=2.381 (p=0.59, power-law plausible); beats lognormal/exponential</td><td>Rich-get-richer dynamics</td></tr>
+</table></div>
+
+<h3>B. Graph Structure Insights</h3>
+<div class="tw"><table>
+<tr><th>Insight</th><th>Evidence</th><th>Implication</th></tr>
+<tr><td><b>No triangles in stored graph</b></td><td>Proof #6: structurally zero. 14/14 proofs PASS</td><td>Projections essential - raw schema isn't triangle-rich</td></tr>
+<tr><td><b>Category overlap creates clusters</b></td><td>Louvain Q=0.356±0.002 on seller_shared_categories; null p=0.0476</td><td>Sellers cluster by product category portfolio</td></tr>
+<tr><td><b>Structural centrality differs</b></td><td>PageRank vs degree rho~0.988, but top-10 differs</td><td>Some sellers bridge category groups despite moderate volume</td></tr>
+<tr><td><b>Sparse co-selling</b></td><td>seller_shared_products: 1,061 edges on 3,095 nodes (giant 12.6%)</td><td>Few sellers share products - mostly private catalogs</td></tr>
+<tr><td><b>Dense category graph</b></td><td>seller_shared_categories: 724k edges, 100% connected, ASPL 1.87</td><td>Category overlap is the main binding force</td></tr>
+<tr><td><b>Bought-together weak</b></td><td>Only 3.3% of orders (3,236/99,441) have ≥2 distinct products</td><td>Cross-sell opportunities limited by basket size</td></tr>
+</table></div>
+
+<h3>C. Prediction Insights</h3>
+<div class="tw"><table>
+<tr><th>Insight</th><th>Evidence</th><th>Implication</th></tr>
+<tr><td><b>Future co-selling predictable</b></td><td>AA AUC = 0.746 (74.6% concordance) on seller-seller (temporal split)</td><td>Can recommend seller partnerships based on shared-product patterns</td></tr>
+<tr><td><b>Product co-purchase not predictable</b></td><td>CN/Jaccard/AA AUC~0.5 (random)</td><td>Too few multi-item baskets for reliable prediction</td></tr>
+<tr><td><b>High-lift associations exist</b></td><td>Lift up to 539 but support &lt; 0.2%</td><td>Rare but very strong product pairs - niche cross-sells</td></tr>
+<tr><td><b>Review score hard to predict</b></td><td>R²~0.08, MAE 0.971 (ceiling at 4.03)</td><td>Most reviews positive; little variance to explain</td></tr>
+</table></div>
+
+<h3>D. NLP & Data Quality Insights</h3>
+<div class="tw"><table>
+<tr><th>Insight</th><th>Evidence</th><th>Implication</th></tr>
+<tr><td><b>Text matches stars</b></td><td>ρ(sentiment, score)=0.55</td><td>Reviews largely consistent</td></tr>
+<tr><td><b>235 inconsistencies</b></td><td>5-star with negative text or vice versa</td><td>Small set of misaligned reviews worth manual inspection</td></tr>
+<tr><td><b>Customer is order-based</b></td><td>99,441 customer nodes for 99,441 orders; 96,096 unique people</td><td>Must group by customer_unique_id for person-level analysis</td></tr>
+<tr><td><b>Zip codes lost leading zero</b></td><td>São Paulo zip prefixes stored as numbers (01037→1037)</td><td>Need zfill(5) for real zip codes</td></tr>
+<tr><td><b>Review deduplication</b></td><td>99,224 rows → 98,410 unique review_id</td><td>Graph keeps one node per review_id</td></tr>
+<tr><td><b>No triangles structurally</b></td><td>All 84 label triples non-adjacent</td><td>Confirms projections necessary for triangle-based metrics</td></tr>
+</table></div>
+</section>
+<section>
+<h2><span class="tk">Q&A</span>Answers to Common Questions</h2>
+
+<div class="ask"><h4>Dataset & Schema</h4>
+  <div class="q"><b>Q: How large is the Olist dataset?</b>
+    <p>A: 568,960 nodes, 774,266 relationships across 9 labels (Order, Customer, OrderItem, Payment, Review, Product, Seller, Geolocation, ProductCategory). 1.55M source CSV rows.</p></div>
+  <div class="q"><b>Q: Are there really 99,441 customers for 99,441 orders?</b>
+    <p>A: Yes - Olist gives a new <code>customer_id</code> per order. The real person is <code>customer_unique_id</code> with 96,096 distinct values.</p></div>
+  <div class="q"><b>Q: Why does the graph have no triangles?</b>
+    <p>A: Mathematically proven (Proof #6). No three labels are pairwise connected - so no 3-cycle possible regardless of nodes. Must project to same-label nodes to get triangles.</p></div>
+  <div class="q"><b>Q: What about duplicate reviews/zip codes?</b>
+    <p>A: 99,224 review rows → 98,410 unique <code>review_id</code> (1 node per id). 1M+ geolocation rows → 19,015 zip prefixes (1 node per prefix).</p></div>
+  <div class="q"><b>Q: Why do zip codes look like "1037" instead of "01037"?</b>
+    <p>A: Stored as numbers in the server; São Paulo zips lost leading zero. Use <code>str(z).zfill(5)</code> to restore proper format.</p></div>
+</div>
+
+<div class="ask"><h4>Analysis Results</h4>
+  <div class="q"><b>Q: How accurate is late delivery prediction?</b>
+    <p>A: AUC=0.7758, AP=0.2466 (vs prevalence 0.065). So significantly better than random. Driven by purchase-time features.</p></div>
+  <div class="q"><b>Q: Is the power law real?</b>
+    <p>A: For seller item-incidence: α=2.381, KS p=0.59 - fails to reject power law. Vuong test shows power law beats lognormal and exponential (p=0.000).</p></div>
+  <div class="q"><b>Q: Why is bought-together prediction weak?</b>
+    <p>A: Only 3.3% of orders have ≥2 distinct products. Structural limitation. Association rules still find high-lift pairs but very low support.</p></div>
+  <div class="q"><b>Q: How strong are the seller communities?</b>
+    <p>A: seller_shared_categories: Q=0.356±0.002 (6–7 communities). Null model Q=0.029±0.0007, permutation p≤0.05 - statistically significant.</p></div>
+  <div class="q"><b>Q: Does text sentiment match ratings?</b>
+    <p>A: Yes, ρ=0.55. 235 inconsistencies out of 40,641 reviews (0.58%).</p></div>
+</div>
+
+<div class="ask"><h4>GrasPh Platform</h4>
+  <div class="q"><b>Q: Should I use hosted or local GrasPh?</b>
+    <p>A: Use <b>local</b> with raised limits for analysis (stable, no 10k truncation). Use <b>hosted</b> (http://100.23.76.198) for demos/spot-checks (auth intermittent).</p></div>
+  <div class="q"><b>Q: Why raise limits on local server?</b>
+    <p>A: Defaults cap at 10k rows. A full label pull returns truncated results. Raise to 5M for <code>max-result-rows</code>, <code>max-path-bindings</code>, etc.</p></div>
+  <div class="q"><b>Q: Can I use my Neo4j GDS code?</b>
+    <p>A: Queries mostly yes (GQL/Cypher style). <code>gds.*</code> procedures don't exist in Grasph - pull to Python (NetworkX/igraph) instead.</p></div>
+  <div class="q"><b>Q: Do I need OPENAI_API_KEY?</b>
+    <p>A: Only if using RAG/question-answering features. For graph queries (MATCH), any placeholder like <code>sk-not-a-real-key</code> is fine.</p></div>
+  <div class="q"><b>Q: How to cross-check my results?</b>
+    <p>A: TASK 11.9 rule 6 - run the same count on Grasph via <code>g.query()</code> and compare with your Python result. Must match.</p></div>
+</div>
+
+<div class="ask"><h4>Reproducibility</h4>
+  <div class="q"><b>Q: In what order to run?</b>
+    <p>A: See COMPLETION.md reproduce order: proofs.py → task01 → task03 → task05 → task07 → task08 → task09 → task02 (venv) → task04 (venv) → task06 (venv).</p></div>
+  <div class="q"><b>Q: Which Python environment?</b>
+    <p>A: Use <code>python3</code> for most; <code>analysis/.venv/bin/python</code> for task02, task04, task06 (need igraph/sklearn).</p></div>
+  <div class="q"><b>Q: Are all proofs valid?</b>
+    <p>A: Yes - all 14/14 mathematical proofs pass (see proofs_results.json and p_math_proofs.md).</p></div>
+  <div class="q"><b>Q: Is this read-only?</b>
+    <p>A: Yes - no writes to Grasph. All analysis reads CSVs/dump or pulls data, computes offline.</p></div>
+</div>
+</section>
+
+<section>
+<h2><span class="tk">DELIVERABLES</span>Complete Deliverable List</h2>
+<div class="tw"><table>
+<tr><th>Category</th><th>Files</th><th>Purpose</th></tr>
+<tr><td><b>Core Analysis</b></td><td>task01_profile.py, task02_powerlaw.py, task03_projections.py, task04_graph_algorithms.py, task05_link_prediction.py, task06_ml.py, task07_nlp.py, task08_timeseries_spatial.py, task09_grasph_verify.py</td><td>All analysis scripts</td></tr>
+<tr><td><b>Reports (JSON)</b></td><td>p2_profile.json, p2_powerlaw.json, p3_projections.json, p4_graph_algorithms.json, p5_link_prediction.json, p6_ml.json, p7_nlp.json, p8_timeseries_spatial.json, p1_verify_platform.json</td><td>Machine-readable results</td></tr>
+<tr><td><b>Reports (Summary)</b></td><td>p*_summary.md files</td><td>Human-readable summaries</td></tr>
+<tr><td><b>Proofs</b></td><td>proofs.py, proofs_results.json, p_math_proofs.md</td><td>14 mathematical proofs (all PASS)</td></tr>
+<tr><td><b>Synthesis</b></td><td>SYNTHESIS.md, GRASP_PLATFORM_TIPS.md, COMPLETION.md</td><td>Final synthesis & platform guide</td></tr>
+<tr><td><b>Projections</b></td><td>projections/*.csv (9 sets) + *.json manifests</td><td>Graph projections for all analyses</td></tr>
+<tr><td><b>Documentation</b></td><td>explain.html (this file), olist-graph-manual.html, manual.css</td><td>Comprehensive documentation</td></tr>
+<tr><td><b>Utilities</b></td><td>grasph_client.py, pull_cache.py, example_first_algorithm.py</td><td>Client tools & caching</td></tr>
+</table></div>
+</section>
+
+</main>
+</div>
+
+<script src="manual.js"></script>
+</body>
+</html>

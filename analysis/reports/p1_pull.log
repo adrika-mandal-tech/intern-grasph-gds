@@ -1,0 +1,11 @@
+status: {'enabled': True, 'node_count': 568960, 'relationship_count': 774266, 'data_dir': '/mnt/grasph-data/native-data'}
+    Order            page  1  rows=10000  new=10000  more   3.4s
+    Order            page  2  rows=    0  new=    0  more   1.2s
+Traceback (most recent call last):
+  File "/Users/adrikamandal/Desktop/GEN AI/PrajnaAI/intern-grasph-gds/analysis/pull_cache.py", line 302, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "/Users/adrikamandal/Desktop/GEN AI/PrajnaAI/intern-grasph-gds/analysis/pull_cache.py", line 228, in main
+    assert len(df) == EXPECTED_NODES[label], \
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Order: got 10000, want 99441

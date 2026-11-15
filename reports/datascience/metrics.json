@@ -1,0 +1,476 @@
+{
+  "provenance": {
+    "source": "Olist-Kaggle-dataset CSVs (verified 0-diff to GrasPh graph per TASK 11.5/11.6)",
+    "n_sellers": 3095,
+    "n_items": 112952,
+    "revenue_brl": 13619102.02,
+    "freight_brl": 2257341.25
+  },
+  "concentration": {
+    "top_share": {
+      "top_1pct": 25.67,
+      "top_5pct": 53.2,
+      "top_10pct": 67.51,
+      "top_30": 25.67
+    },
+    "half_sellers_count": 131,
+    "revenue_gini": 0.7916,
+    "item_gini": 0.7853,
+    "lorenz_revenue": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        0.05,
+        0.0003
+      ],
+      [
+        0.1,
+        0.001
+      ],
+      [
+        0.15,
+        0.0021
+      ],
+      [
+        0.2,
+        0.0037
+      ],
+      [
+        0.25,
+        0.0058
+      ],
+      [
+        0.3,
+        0.0086
+      ],
+      [
+        0.35,
+        0.0123
+      ],
+      [
+        0.4,
+        0.0172
+      ],
+      [
+        0.45,
+        0.0237
+      ],
+      [
+        0.5,
+        0.0322
+      ],
+      [
+        0.55,
+        0.0427
+      ],
+      [
+        0.6,
+        0.0564
+      ],
+      [
+        0.65,
+        0.0737
+      ],
+      [
+        0.7,
+        0.0968
+      ],
+      [
+        0.75,
+        0.1289
+      ],
+      [
+        0.8,
+        0.1731
+      ],
+      [
+        0.85,
+        0.2348
+      ],
+      [
+        0.9,
+        0.3249
+      ],
+      [
+        0.95,
+        0.4668
+      ],
+      [
+        1.0,
+        1.0
+      ]
+    ]
+  },
+  "review_delay": {
+    "n_with_review": 111461,
+    "n_late": 8484,
+    "n_ontime": 102977,
+    "late_share_pct": 7.61,
+    "mean_late_score": 2.548,
+    "mean_ontime_score": 4.157,
+    "pearson_delay_score": -0.258
+  },
+  "delay_buckets": [
+    {
+      "bucket": "On time",
+      "n": 102076,
+      "mean_review": 4.21,
+      "low_review_pct": 11.4
+    },
+    {
+      "bucket": "1-3 days late",
+      "n": 2076,
+      "mean_review": 3.233,
+      "low_review_pct": 34.0
+    },
+    {
+      "bucket": "4-7 days late",
+      "n": 1937,
+      "mean_review": 2.092,
+      "low_review_pct": 68.0
+    },
+    {
+      "bucket": "8-14 days late",
+      "n": 1574,
+      "mean_review": 1.68,
+      "low_review_pct": 80.1
+    },
+    {
+      "bucket": "15+ days late",
+      "n": 1469,
+      "mean_review": 1.708,
+      "low_review_pct": 78.8
+    }
+  ],
+  "top_states": [
+    {
+      "seller_state": "SP",
+      "n_items": 80564,
+      "n_orders": 70188,
+      "n_late": 6715,
+      "mean_price": 108.88,
+      "late_pct": 8.33
+    },
+    {
+      "seller_state": "MG",
+      "n_items": 8849,
+      "n_orders": 7930,
+      "n_late": 480,
+      "mean_price": 114.52,
+      "late_pct": 5.42
+    },
+    {
+      "seller_state": "PR",
+      "n_items": 8706,
+      "n_orders": 7673,
+      "n_late": 548,
+      "mean_price": 145.33,
+      "late_pct": 6.29
+    },
+    {
+      "seller_state": "RJ",
+      "n_items": 4828,
+      "n_orders": 4353,
+      "n_late": 381,
+      "mean_price": 175.25,
+      "late_pct": 7.89
+    },
+    {
+      "seller_state": "SC",
+      "n_items": 4081,
+      "n_orders": 3667,
+      "n_late": 235,
+      "mean_price": 155.07,
+      "late_pct": 5.76
+    },
+    {
+      "seller_state": "RS",
+      "n_items": 2203,
+      "n_orders": 1989,
+      "n_late": 97,
+      "mean_price": 172.45,
+      "late_pct": 4.4
+    },
+    {
+      "seller_state": "DF",
+      "n_items": 900,
+      "n_orders": 824,
+      "n_late": 59,
+      "mean_price": 108.67,
+      "late_pct": 6.56
+    },
+    {
+      "seller_state": "BA",
+      "n_items": 643,
+      "n_orders": 569,
+      "n_late": 34,
+      "mean_price": 444.11,
+      "late_pct": 5.29
+    }
+  ],
+  "top_state_revenue_share_pct": 0.0,
+  "seller_risk": {
+    "n_flagged": 131,
+    "n_total_with_reviews": 886,
+    "top_risk": [
+      {
+        "seller_id": "2709af9587499e95e803a6498a5a56e9",
+        "seller_state": "SP",
+        "n_reviews": 46,
+        "mean_score": 2.565,
+        "late_rate": 48.94
+      },
+      {
+        "seller_id": "f76a3b1349b6df1ee875d1f3fa4340f0",
+        "seller_state": "SP",
+        "n_reviews": 24,
+        "mean_score": 3.458,
+        "late_rate": 37.5
+      },
+      {
+        "seller_id": "973f21788dfab357250f69a8dcb7ddee",
+        "seller_state": "MG",
+        "n_reviews": 21,
+        "mean_score": 2.333,
+        "late_rate": 33.33
+      },
+      {
+        "seller_id": "ede0c03645598cdfc63ca8237acbe73d",
+        "seller_state": "SP",
+        "n_reviews": 47,
+        "mean_score": 3.617,
+        "late_rate": 32.0
+      },
+      {
+        "seller_id": "821fb029fc6e495ca4f08a35d51e53a5",
+        "seller_state": "SP",
+        "n_reviews": 28,
+        "mean_score": 3.429,
+        "late_rate": 31.03
+      },
+      {
+        "seller_id": "54965bbe3e4f07ae045b90b0b8541f52",
+        "seller_state": "PR",
+        "n_reviews": 81,
+        "mean_score": 2.938,
+        "late_rate": 30.23
+      },
+      {
+        "seller_id": "7f152321c60a266edc53af1925ef96c1",
+        "seller_state": "SC",
+        "n_reviews": 20,
+        "mean_score": 3.8,
+        "late_rate": 30.0
+      },
+      {
+        "seller_id": "835f0f7810c76831d6c7d24c7a646d4d",
+        "seller_state": "SP",
+        "n_reviews": 50,
+        "mean_score": 3.3,
+        "late_rate": 30.0
+      },
+      {
+        "seller_id": "4e5725ba188db8252977a4f0227bd462",
+        "seller_state": "SP",
+        "n_reviews": 25,
+        "mean_score": 3.44,
+        "late_rate": 28.0
+      },
+      {
+        "seller_id": "ad781527c93d00d89a11eecd9dcad7c1",
+        "seller_state": "SP",
+        "n_reviews": 44,
+        "mean_score": 3.068,
+        "late_rate": 27.27
+      }
+    ]
+  },
+  "categories": {
+    "top_by_revenue": [
+      {
+        "category_en": "health_beauty",
+        "n_items": 9670,
+        "revenue": 1258681.34,
+        "n_sellers": 492,
+        "n_products": 2444,
+        "hhi": 0.0236
+      },
+      {
+        "category_en": "watches_gifts",
+        "n_items": 5991,
+        "revenue": 1205005.68,
+        "n_sellers": 101,
+        "n_products": 1329,
+        "hhi": 0.0931
+      },
+      {
+        "category_en": "bed_bath_table",
+        "n_items": 11115,
+        "revenue": 1036988.68,
+        "n_sellers": 196,
+        "n_products": 3029,
+        "hhi": 0.06
+      },
+      {
+        "category_en": "sports_leisure",
+        "n_items": 8641,
+        "revenue": 988048.97,
+        "n_sellers": 481,
+        "n_products": 2867,
+        "hhi": 0.015
+      },
+      {
+        "category_en": "computers_accessories",
+        "n_items": 7827,
+        "revenue": 911954.32,
+        "n_sellers": 287,
+        "n_products": 1639,
+        "hhi": 0.0224
+      },
+      {
+        "category_en": "furniture_decor",
+        "n_items": 8334,
+        "revenue": 729762.49,
+        "n_sellers": 370,
+        "n_products": 2657,
+        "hhi": 0.0401
+      },
+      {
+        "category_en": "cool_stuff",
+        "n_items": 3796,
+        "revenue": 635290.85,
+        "n_sellers": 267,
+        "n_products": 789,
+        "hhi": 0.0635
+      },
+      {
+        "category_en": "housewares",
+        "n_items": 6964,
+        "revenue": 632248.66,
+        "n_sellers": 468,
+        "n_products": 2335,
+        "hhi": 0.0125
+      },
+      {
+        "category_en": "auto",
+        "n_items": 4235,
+        "revenue": 592720.11,
+        "n_sellers": 383,
+        "n_products": 1900,
+        "hhi": 0.0284
+      },
+      {
+        "category_en": "garden_tools",
+        "n_items": 4347,
+        "revenue": 485256.46,
+        "n_sellers": 237,
+        "n_products": 753,
+        "hhi": 0.0709
+      },
+      {
+        "category_en": "toys",
+        "n_items": 4117,
+        "revenue": 483946.6,
+        "n_sellers": 252,
+        "n_products": 1411,
+        "hhi": 0.0402
+      },
+      {
+        "category_en": "baby",
+        "n_items": 3065,
+        "revenue": 411764.89,
+        "n_sellers": 244,
+        "n_products": 919,
+        "hhi": 0.0506
+      },
+      {
+        "category_en": "perfumery",
+        "n_items": 3419,
+        "revenue": 399124.87,
+        "n_sellers": 175,
+        "n_products": 868,
+        "hhi": 0.0828
+      },
+      {
+        "category_en": "telephony",
+        "n_items": 4545,
+        "revenue": 323667.53,
+        "n_sellers": 149,
+        "n_products": 1134,
+        "hhi": 0.057
+      },
+      {
+        "category_en": "office_furniture",
+        "n_items": 1691,
+        "revenue": 273960.7,
+        "n_sellers": 34,
+        "n_products": 309,
+        "hhi": 0.4234
+      }
+    ],
+    "risky_by_hhi": [
+      {
+        "category_en": "cds_dvds_musicals",
+        "n_sellers": 1,
+        "revenue": 730.0,
+        "hhi": 1.0
+      },
+      {
+        "category_en": "la_cuisine",
+        "n_sellers": 2,
+        "revenue": 2054.99,
+        "hhi": 0.89
+      },
+      {
+        "category_en": "computers",
+        "n_sellers": 9,
+        "revenue": 222963.13,
+        "hhi": 0.5796
+      },
+      {
+        "category_en": "security_and_services",
+        "n_sellers": 2,
+        "revenue": 283.29,
+        "hhi": 0.5432
+      },
+      {
+        "category_en": "tablets_printing_image",
+        "n_sellers": 6,
+        "revenue": 7528.41,
+        "hhi": 0.4775
+      },
+      {
+        "category_en": "flowers",
+        "n_sellers": 3,
+        "revenue": 1110.04,
+        "hhi": 0.4755
+      },
+      {
+        "category_en": "office_furniture",
+        "n_sellers": 34,
+        "revenue": 273960.7,
+        "hhi": 0.4234
+      },
+      {
+        "category_en": "home_comfort_2",
+        "n_sellers": 4,
+        "revenue": 760.27,
+        "hhi": 0.3913
+      },
+      {
+        "category_en": "small_appliances_home_oven_and_coffee",
+        "n_sellers": 15,
+        "revenue": 47445.71,
+        "hhi": 0.3846
+      },
+      {
+        "category_en": "home_confort",
+        "n_sellers": 20,
+        "revenue": 58572.04,
+        "hhi": 0.3827
+      }
+    ]
+  }
+}

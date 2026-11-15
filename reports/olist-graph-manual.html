@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>11 Olist Graph on Grasph: the Dump and the Data | Grasph Field Manual</title>
+<link rel="stylesheet" href="manual.css">
+</head>
+<body data-page="11">
+<svg class="defs"><defs>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#16202a"/></marker>
+<marker id="aho" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#e4572e"/></marker>
+</defs></svg>
+<header id="mh"></header>
+
+<div class="cover"><div class="plate">
+  <div class="no">11</div>
+  <div class="ti">
+    <h1>Olist Graph on Grasph: the Dump and the Data</h1>
+    <p class="sub">A copy of the Grasph database that holds the Olist graph, to run on your own computer. This page explains the data and the schema in detail, how to start Grasph on the dump, how to query it, and how to take data out of it for graph algorithms. All counts on this page were read from the data, and the data was checked against the demo server.</p>
+  </div>
+  <div class="meta"><b>READ TIME</b> 30 min<br><b>NEEDS</b> 4 GB disk, 4 GB memory<br><b>DUMP TAKEN</b> 2026-10-07 17:19 UTC<br><b>NAMESPACE</b> olist</div>
+</div></div>
+
+<div class="wrap">
+<aside id="toc"></aside>
+<main>
+
+<section>
+<h2><span class="tk">TASK 11.1</span>Know what you have</h2>
+<p class="lead">With Neo4j you opened a bolt connection to a shared server and called <code>gds.*</code> procedures. Grasph has no bolt driver and no GDS library today, and the demo server is not open to you. So you get the database itself: a copy of the Grasph data store, and the server program. You run Grasph on your own computer and work on it there.</p>
+<div class="facts">
+  <div class="o"><b>568,960</b><span>nodes</span></div>
+  <div class="o"><b>774,266</b><span>relationships</span></div>
+  <div><b>9</b><span>labels</span></div>
+  <div><b>9</b><span>relationship types</span></div>
+  <div><b>1</b><span>namespace: <code>olist</code></span></div>
+</div>
+<div class="flow">
+  <div class="st"><b>1</b><span>Unpack</span><small>The store archive becomes a folder, <code>grasph-data</code>.</small></div>
+  <div class="st"><b>2</b><span>Start</span><small>Run <code>graphdb-server</code> on that folder.</small></div>
+  <div class="st"><b>3</b><span>Query</span><small>Ask Grasph questions in GQL, over HTTP.</small></div>
+  <div class="st hot"><b>4</b><span>Pull</span><small>Take the nodes and links that you need into Python.</small></div>
+  <div class="st hot"><b>5</b><span>Analyse</span><small>Your work: projections, algorithms, findings.</small></div>
+</div>
+<div class="tw"><table>
+<tr><th>In this folder</th><th>What it is</th></tr>
+<tr><td><code>olist-grasph-store.tar.xz</code></td><td>The dump: the data store of the server, copied on 2026-10-07.</td></tr>
+<tr><td><code>bin/graphdb-server.exe</code></td><td>The Grasph server program for Windows.</td></tr>
+<tr><td><code>bin/graphdb-server-linux.xz</code>, <code>bin/linux-libs.tar.xz</code></td><td>The Linux program and its libraries, for a Mac with Docker.</td></tr>
+<tr><td><code>grasph_client.py</code></td><td>A small Python file that logs in, runs a query, and pulls whole labels and relationship types.</td></tr>
+<tr><td><code>example_first_algorithm.py</code></td><td>One short example: pull, build a graph, run one algorithm. A starting point only.</td></tr>
+<tr><td><code>olist-graph-manual.html</code></td><td>This page.</td></tr>
+</table></div>
+<div class="note"><p>Steps 1 to 4 are given to you. Step 5 is the work: decide what to look at in this data, choose the projections and the algorithms, and find what is true. This page explains the data in detail so that you do not start from zero. It does not tell you what you will find.</p></div>
+<div class="pair">
+  <div class="term">Dump</div>
+  <div class="s"><span class="tag">SIMPLE</span><p>The whole database, packed into one file. You unpack it, point the server at it, and you have the same graph that the demo server has.</p></div>
+  <div class="t"><span class="tag">TECHNICAL</span><p>A copy of the data directory of the server: the graph store (RocksDB), the property store, the indexes, the vector index and the text index. It was taken from a copy that a second server had opened and closed cleanly, and its totals are equal to the totals of the live server.</p></div>
+</div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.2</span>Know where the data came from</h2>
+<p class="lead">Olist is a marketplace in Brazil. Small shops sell through it to customers in the whole country. Olist published about 100,000 real orders, with the names removed. The orders are from September 2016 to October 2018.</p>
+<div class="facts">
+  <div><b>99,441</b><span>orders</span></div>
+  <div><b>96,096</b><span>different people who bought</span></div>
+  <div><b>3,095</b><span>sellers</span></div>
+  <div><b>32,951</b><span>products in 71 categories</span></div>
+  <div class="o"><b>R$ 16.0 M</b><span>paid in total (16,008,872.12)</span></div>
+</div>
+<p>The data arrived as nine CSV files. The structured pipeline of Grasph read them with a schema. The table shows what each file became.</p>
+<div class="tw"><table>
+<tr><th>Source file</th><th class="n">Rows</th><th>Became label</th><th class="n">Nodes</th><th>Key (one node for each)</th></tr>
+<tr><td><code>olist_orders_dataset.csv</code></td><td class="n">99,441</td><td><b>Order</b></td><td class="n">99,441</td><td><code>order_id</code></td></tr>
+<tr><td><code>olist_customers_dataset.csv</code></td><td class="n">99,441</td><td><b>Customer</b></td><td class="n">99,441</td><td><code>customer_id</code></td></tr>
+<tr><td><code>olist_order_items_dataset.csv</code></td><td class="n">112,650</td><td><b>OrderItem</b></td><td class="n">112,650</td><td><code>order_id</code> + <code>order_item_id</code></td></tr>
+<tr><td><code>olist_order_payments_dataset.csv</code></td><td class="n">103,886</td><td><b>Payment</b></td><td class="n">103,886</td><td><code>order_id</code> + <code>payment_sequential</code></td></tr>
+<tr><td><code>olist_order_reviews_dataset.csv</code></td><td class="n">99,224</td><td><b>Review</b></td><td class="n">98,410</td><td><code>review_id</code></td></tr>
+<tr><td><code>olist_products_dataset.csv</code></td><td class="n">32,951</td><td><b>Product</b></td><td class="n">32,951</td><td><code>product_id</code></td></tr>
+<tr><td><code>olist_sellers_dataset.csv</code></td><td class="n">3,095</td><td><b>Seller</b></td><td class="n">3,095</td><td><code>seller_id</code></td></tr>
+<tr><td><code>olist_geolocation_dataset.csv</code></td><td class="n">1,000,163</td><td><b>Geolocation</b></td><td class="n">19,015</td><td><code>geolocation_zip_code_prefix</code></td></tr>
+<tr><td><code>product_category_name_translation.csv</code></td><td class="n">71</td><td><b>ProductCategory</b></td><td class="n">71</td><td><code>product_category_name</code></td></tr>
+<tr class="tot"><td>Total</td><td class="n">1,550,922</td><td></td><td class="n">568,960</td><td><span class="stamp v">CHECKED 2026-10-07</span></td></tr>
+</table></div>
+<h3>How a row becomes a node, and a column becomes a relationship</h3>
+<ol class="steps">
+  <li><b class="w">One node for each key.</b> The pipeline makes one node for each different value of the key column. Two rows with the same key become one node. This is why 1,000,163 geolocation rows became 19,015 nodes: the file has many map points for each zip-code area, and the node keeps one of them.</li>
+  <li><b class="w">Each other column becomes a property.</b> The column name is the property name. The node also gets <code>namespace</code> (always <code>olist</code>) and <code>source</code> (the file name).</li>
+  <li><b class="w">A shared column becomes a relationship.</b> The schema says: "<code>customer_id</code> in Order points at <code>customer_id</code> in Customer". The pipeline makes one <code>PLACED_BY</code> relationship for each pair of nodes where the two values are equal.</li>
+  <li><b class="w">No match, no relationship.</b> When the value does not exist on the other side, the node stays and the relationship is not made. TASK 11.3 lists how many times this happened.</li>
+</ol>
+<div class="pair">
+  <div class="term">Key and foreign key</div>
+  <div class="s"><span class="tag">SIMPLE</span><p>The key is the name tag of a row: no two rows have the same one. A foreign key is a column that holds the name tag of a row in a different file. "This order belongs to customer X."</p></div>
+  <div class="t"><span class="tag">TECHNICAL</span><p>Primary key: the column or columns under a <code>RequireUniqueId</code> constraint in the schema. Foreign key: the <code>from_columns</code> and <code>to_columns</code> of a relationship schema. The relationship is the equi-join of the two labels on those columns.</p></div>
+</div>
+<div class="caution"><p>The key columns stay on the nodes as properties. An OrderItem node has <code>order_id</code>, <code>product_id</code> and <code>seller_id</code> as text, and it also has the three relationships. The relationship and the property say the same thing.</p></div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.3</span>Know the schema</h2>
+<p class="lead">The Order is the centre. Each other thing hangs from it, one or two steps away.</p>
+<figure><div class="cv">
+<svg viewBox="0 0 980 470" width="980" role="img" aria-label="Schema of the Olist graph: nine labels and nine relationship types">
+  <circle class="bo" cx="430" cy="105" r="58"/><text class="tb" x="430" y="100" text-anchor="middle">Order</text><text class="ts" x="430" y="120" text-anchor="middle">99,441</text>
+  <circle class="bn" cx="150" cy="105" r="54"/><text class="tb" x="150" y="100" text-anchor="middle">Customer</text><text class="ts" x="150" y="120" text-anchor="middle">99,441</text>
+  <circle class="bg" cx="700" cy="52" r="42"/><text class="tb" x="700" y="48" text-anchor="middle">Payment</text><text class="ts" x="700" y="66" text-anchor="middle">103,886</text>
+  <circle class="bg" cx="880" cy="140" r="42"/><text class="tb" x="880" y="136" text-anchor="middle">Review</text><text class="ts" x="880" y="154" text-anchor="middle">98,410</text>
+  <circle class="bo" cx="470" cy="275" r="50"/><text class="tb" x="470" y="270" text-anchor="middle">OrderItem</text><text class="ts" x="470" y="290" text-anchor="middle">112,650</text>
+  <circle class="bn" cx="330" cy="410" r="46"/><text class="tb" x="330" y="406" text-anchor="middle">Seller</text><text class="ts" x="330" y="424" text-anchor="middle">3,095</text>
+  <circle class="b" cx="110" cy="330" r="52"/><text class="tb" x="110" y="326" text-anchor="middle">Geolocation</text><text class="ts" x="110" y="344" text-anchor="middle">19,015</text>
+  <circle class="bb" cx="690" cy="330" r="48"/><text class="tb" x="690" y="326" text-anchor="middle">Product</text><text class="ts" x="690" y="344" text-anchor="middle">32,951</text>
+  <circle class="bb" cx="890" cy="330" r="50"/><text class="tb" x="890" y="320" text-anchor="middle">Product</text><text class="tb" x="890" y="336" text-anchor="middle">Category</text><text class="ts" x="890" y="354" text-anchor="middle">71</text>
+  <path class="l" d="M372 105H206"/><text class="ts" x="289" y="97" text-anchor="middle">PLACED_BY</text>
+  <path class="l" d="M486 90L660 60"/><text class="ts" x="560" y="62" text-anchor="middle">HAS_PAYMENT</text>
+  <path class="l" d="M487 110L838 137"/><text class="ts" x="670" y="140" text-anchor="middle">HAS_REVIEW</text>
+  <path class="lo" d="M442 162L460 224"/><text class="to" x="460" y="196">HAS_ITEM</text>
+  <path class="lo" d="M436 312L362 376"/><text class="to" x="330" y="336">SOLD_BY</text>
+  <path class="lo" d="M519 287L642 320"/><text class="to" x="536" y="280">ITEM_OF_PRODUCT</text>
+  <path class="l" d="M738 330H838"/><text class="ts" x="788" y="320" text-anchor="middle">IN_CATEGORY</text>
+  <path class="l" d="M140 158L122 277"/><text class="ts" x="140" y="220">CUSTOMER_LOCATED_IN</text>
+  <path class="l" d="M286 396L160 348"/><text class="ts" x="150" y="408">SELLER_LOCATED_IN</text>
+  <text class="ts" x="420" y="452">Orange links: the path from an order to its seller and its product. Most projections use it.</text>
+</svg></div>
+<figcaption><b>FIG 11-1</b>The Olist schema: 9 labels, 9 relationship types. The number in each circle is the node count. An arrow shows the direction that is stored. <span class="stamp v">CHECKED 2026-10-07</span></figcaption></figure>
+
+<div class="tw"><table>
+<tr><th>Relationship</th><th>From → To</th><th class="n">Count</th><th>Joined on</th><th>What is missing</th></tr>
+<tr><td><code>PLACED_BY</code></td><td>Order → Customer</td><td class="n">99,441</td><td><code>customer_id</code></td><td>Nothing. Each order has one customer.</td></tr>
+<tr><td><code>HAS_ITEM</code></td><td>Order → OrderItem</td><td class="n">112,650</td><td><code>order_id</code></td><td>775 orders have no item: 603 are unavailable and 164 are cancelled.</td></tr>
+<tr><td><code>ITEM_OF_PRODUCT</code></td><td>OrderItem → Product</td><td class="n">112,650</td><td><code>product_id</code></td><td>Nothing. Each item has one product.</td></tr>
+<tr><td><code>SOLD_BY</code></td><td>OrderItem → Seller</td><td class="n">112,650</td><td><code>seller_id</code></td><td>Nothing. Each item has one seller.</td></tr>
+<tr><td><code>HAS_PAYMENT</code></td><td>Order → Payment</td><td class="n">103,886</td><td><code>order_id</code></td><td>1 order has no payment.</td></tr>
+<tr><td><code>HAS_REVIEW</code></td><td>Order → Review</td><td class="n">98,410</td><td><code>order_id</code></td><td>1,274 orders have no review. 243 orders have two or more.</td></tr>
+<tr><td><code>IN_CATEGORY</code></td><td>Product → ProductCategory</td><td class="n">32,328</td><td><code>product_category_name</code></td><td>623 products have no category node (see TASK 11.5).</td></tr>
+<tr><td><code>CUSTOMER_LOCATED_IN</code></td><td>Customer → Geolocation</td><td class="n">99,163</td><td>zip-code prefix</td><td>278 customers: their zip prefix is not in the geolocation file.</td></tr>
+<tr><td><code>SELLER_LOCATED_IN</code></td><td>Seller → Geolocation</td><td class="n">3,088</td><td>zip-code prefix</td><td>7 sellers, for the same reason.</td></tr>
+<tr class="tot"><td>Total</td><td></td><td class="n">774,266</td><td colspan="2">Equal to the total that the server reports. <span class="stamp v">CHECKED 2026-10-07</span></td></tr>
+</table></div>
+<div class="note"><p>No relationship has a property. There is no weight, no date and no amount on a link. When an algorithm needs a weight, you make it from the nodes: the <code>price</code> of the OrderItem, or a count (how many items, how many shared products).</p></div>
+<div class="pair">
+  <div class="term">Direction</div>
+  <div class="s"><span class="tag">SIMPLE</span><p>Each link is stored as an arrow, from one thing to the other. "Order → Customer" does not mean that you cannot walk from the customer to the order. It is only the way the arrow was written down.</p></div>
+  <div class="t"><span class="tag">TECHNICAL</span><p>The direction is the one in the schema (<code>from_label</code> → <code>to_label</code>). For most algorithms on this graph you project the relationships as undirected, the same as <code>orientation: 'UNDIRECTED'</code> in Neo4j GDS.</p></div>
+</div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.4</span>Know every label and its properties</h2>
+<p class="lead">Each node also has <code>_id</code> (the node id on the server), <code>namespace</code> (always <code>olist</code>) and <code>source</code> (the CSV file it came from). The tables below leave those three out.</p>
+
+<h3>Order · 99,441 nodes · one purchase</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>order_id</code></td><td>text</td><td>The key. 32 characters.</td><td class="n">0</td></tr>
+<tr><td><code>customer_id</code></td><td>text</td><td>Points at the Customer node.</td><td class="n">0</td></tr>
+<tr><td><code>order_status</code></td><td>text</td><td>delivered 96,478 · shipped 1,107 · canceled 625 · unavailable 609 · invoiced 314 · processing 301 · created 5 · approved 2</td><td class="n">0</td></tr>
+<tr><td><code>order_purchase_timestamp</code></td><td>text</td><td>When the customer bought. From 2016-09-04 to 2018-10-17. Form: <code>2017-10-02 10:56:33</code>.</td><td class="n">0</td></tr>
+<tr><td><code>order_approved_at</code></td><td>text</td><td>When the payment was approved.</td><td class="n">160</td></tr>
+<tr><td><code>order_delivered_carrier_date</code></td><td>text</td><td>When the seller gave the parcel to the carrier.</td><td class="n">1,783</td></tr>
+<tr><td><code>order_delivered_customer_date</code></td><td>text</td><td>When the customer received it.</td><td class="n">2,965</td></tr>
+<tr><td><code>order_estimated_delivery_date</code></td><td>text</td><td>The date that was promised to the customer.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Customer · 99,441 nodes · the buyer of one order</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>customer_id</code></td><td>text</td><td>The key. <b>A new one for each order.</b> See TASK 11.5.</td><td class="n">0</td></tr>
+<tr><td><code>customer_unique_id</code></td><td>text</td><td>The real person. 96,096 different values.</td><td class="n">0</td></tr>
+<tr><td><code>customer_zip_code_prefix</code></td><td>number</td><td>First 5 digits of the zip code. Points at Geolocation.</td><td class="n">0</td></tr>
+<tr><td><code>customer_city</code></td><td>text</td><td>4,119 cities, in lower case.</td><td class="n">0</td></tr>
+<tr><td><code>customer_state</code></td><td>text</td><td>27 states. SP 41,746 · RJ 12,852 · MG 11,635.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>OrderItem · 112,650 nodes · one unit of one product in one order</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>order_id</code> + <code>order_item_id</code></td><td>text + number</td><td>The key. <code>order_item_id</code> counts 1, 2, 3 … inside the order. The largest order has 21 items.</td><td class="n">0</td></tr>
+<tr><td><code>product_id</code></td><td>text</td><td>Points at the Product node.</td><td class="n">0</td></tr>
+<tr><td><code>seller_id</code></td><td>text</td><td>Points at the Seller node.</td><td class="n">0</td></tr>
+<tr><td><code>price</code></td><td>number</td><td>Price of this unit in Brazilian reais. Sum: 13,591,643.70.</td><td class="n">0</td></tr>
+<tr><td><code>freight_value</code></td><td>number</td><td>Shipping cost of this unit. Sum: 2,251,909.54.</td><td class="n">0</td></tr>
+<tr><td><code>shipping_limit_date</code></td><td>text</td><td>The date by which the seller must hand over the parcel.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Payment · 103,886 nodes · one payment line of an order</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>order_id</code> + <code>payment_sequential</code></td><td>text + number</td><td>The key. An order paid with a voucher and a card has two payment nodes.</td><td class="n">0</td></tr>
+<tr><td><code>payment_type</code></td><td>text</td><td>credit_card 76,795 · boleto 19,784 · voucher 5,775 · debit_card 1,529 · not_defined 3. A boleto is a bank payment slip.</td><td class="n">0</td></tr>
+<tr><td><code>payment_installments</code></td><td>number</td><td>In how many monthly parts the customer pays.</td><td class="n">0</td></tr>
+<tr><td><code>payment_value</code></td><td>number</td><td>Amount in reais. Sum: 16,008,872.12.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Review · 98,410 nodes · the opinion of the customer</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>review_id</code></td><td>text</td><td>The key.</td><td class="n">0</td></tr>
+<tr><td><code>order_id</code></td><td>text</td><td>Points at the Order node.</td><td class="n">0</td></tr>
+<tr><td><code>review_score</code></td><td>number</td><td>1 to 5. Five: 56,910 · four: 19,007 · three: 8,097 · two: 3,114 · one: 11,282.</td><td class="n">0</td></tr>
+<tr><td><code>review_comment_title</code></td><td>text</td><td>Title, in Portuguese.</td><td class="n">86,893</td></tr>
+<tr><td><code>review_comment_message</code></td><td>text</td><td>Free text, in Portuguese.</td><td class="n">57,769</td></tr>
+<tr><td><code>review_creation_date</code></td><td>text</td><td>When the survey was sent.</td><td class="n">0</td></tr>
+<tr><td><code>review_answer_timestamp</code></td><td>text</td><td>When the customer answered.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Product · 32,951 nodes · one thing in the catalogue</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>product_id</code></td><td>text</td><td>The key. There is no product name in this data.</td><td class="n">0</td></tr>
+<tr><td><code>product_category_name</code></td><td>text</td><td>Category in Portuguese. Points at ProductCategory.</td><td class="n">610</td></tr>
+<tr><td><code>product_name_lenght</code>, <code>product_description_lenght</code></td><td>number</td><td>Number of characters in the name and in the description. The spelling "lenght" is from the source.</td><td class="n">610</td></tr>
+<tr><td><code>product_photos_qty</code></td><td>number</td><td>Number of photos.</td><td class="n">610</td></tr>
+<tr><td><code>product_weight_g</code></td><td>number</td><td>Weight in grams.</td><td class="n">2</td></tr>
+<tr><td><code>product_length_cm</code>, <code>product_height_cm</code>, <code>product_width_cm</code></td><td>number</td><td>Size of the parcel.</td><td class="n">2</td></tr>
+</table></div>
+
+<h3>ProductCategory · 71 nodes</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>product_category_name</code></td><td>text</td><td>The key, in Portuguese: <code>beleza_saude</code>.</td><td class="n">0</td></tr>
+<tr><td><code>product_category_name_english</code></td><td>text</td><td>The same in English: <code>health_beauty</code>. Use this one in your tables.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Seller · 3,095 nodes · one shop</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>seller_id</code></td><td>text</td><td>The key. There is no shop name in this data.</td><td class="n">0</td></tr>
+<tr><td><code>seller_zip_code_prefix</code></td><td>number</td><td>Points at Geolocation.</td><td class="n">0</td></tr>
+<tr><td><code>seller_city</code></td><td>text</td><td>611 values. 19 are not clean: <code>sao paulo / sao paulo</code>, <code>sbc/sp</code>, <code>4482255</code>.</td><td class="n">0</td></tr>
+<tr><td><code>seller_state</code></td><td>text</td><td>23 states. SP 1,849 · PR 349 · MG 244 · SC 190 · RJ 171.</td><td class="n">0</td></tr>
+</table></div>
+
+<h3>Geolocation · 19,015 nodes · one zip-code area</h3>
+<div class="tw"><table>
+<tr><th>Property</th><th>Type</th><th>What it is</th><th class="n">Empty</th></tr>
+<tr><td><code>geolocation_zip_code_prefix</code></td><td>number</td><td>The key: first 5 digits of the zip code.</td><td class="n">0</td></tr>
+<tr><td><code>geolocation_lat</code>, <code>geolocation_lng</code></td><td>number</td><td>One map point inside the area. The source file has many points for each area and the node keeps one.</td><td class="n">0</td></tr>
+<tr><td><code>geolocation_city</code>, <code>geolocation_state</code></td><td>text</td><td>City and state of that point.</td><td class="n">0</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.5</span>Know nine facts before you run anything</h2>
+<p class="lead">An algorithm does not know these facts. It gives you a number in each case. You must know them, so that the number means something.</p>
+<ol class="steps">
+  <li><b class="w">A Customer node is not a person.</b> Olist gives a new <code>customer_id</code> for each order. So there are 99,441 customers for 99,441 orders, and each Customer node has exactly one order. The person is <code>customer_unique_id</code>: 96,096 people. To study people, group the Customer nodes by <code>customer_unique_id</code> first.</li>
+  <li><b class="w">Almost nobody buys two times.</b> 93,099 people have one order. Only 2,997 people (3.1%) have two or more. A "customers who bought from the same seller" graph is very thin for this reason.</li>
+  <li><b class="w">Most orders have one item.</b> 88,863 orders have one item. Only 3,236 orders have two or more different products, and only 1,278 orders have two or more sellers. A "bought together" graph is small.</li>
+  <li><b class="w">A few sellers do most of the business.</b> Half of the sellers sold 8 items or fewer. The top 30 sellers (1%) sold 26.4% of all items. Half of all items come from 131 sellers.</li>
+  <li><b class="w">Most products are sold by one seller.</b> Only 1,225 of 32,951 products are sold by two or more sellers. A shared product is one of the few things that joins two sellers to each other.</li>
+  <li><b class="w">Zip codes lost their first zero.</b> The server holds the zip prefix as a number, so <code>01037</code> became <code>1037</code>. This is so for 23,995 customers, 1,027 sellers and 4,354 areas (all of them in the state of São Paulo, most in and around the city). The relationships are correct, because both sides lost the zero. To print a real zip code, write it with 5 digits: <code>str(z).zfill(5)</code>.</li>
+  <li><b class="w">623 products have no category node.</b> 610 products have an empty category. 13 products are in two categories that the translation file does not have (<code>pc_gamer</code> and <code>portateis_cozinha_e_preparadores_de_alimentos</code>). These 623 products are in no category projection.</li>
+  <li><b class="w">A review can lose an order.</b> The review file has 99,224 rows and 98,410 different review ids: the same review is sometimes written for several orders. The node keeps one row, so it links to one order only. In total 1,274 orders have no review node: 768 have no review in the source file, and 506 lost theirs in this way.</li>
+  <li><b class="w">The graph has no triangles.</b> No three labels are joined to each other in a ring. So triangle count and the clustering coefficient are zero on the stored graph, for every node. These two measures can only become useful on a projection that joins nodes of one kind to each other.</li>
+</ol>
+<div class="warning"><p>The first and the last months are almost empty: 4 orders in 2016-09, 1 in 2016-12, 16 in 2018-09, 4 in 2018-10. Do not read a trend from them. The months with full data are 2017-01 to 2018-08.</p></div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.6</span>Start Grasph on the dump</h2>
+<p class="lead">You need about 4 GB of free disk and 4 GB of free memory. The steps below are for Windows. The steps for a Mac follow them.</p>
+<ol class="steps">
+  <li><b class="w">Unpack the dump.</b> It becomes a folder named <code>grasph-data</code> (2.8 GB).
+<pre><code>tar -xf olist-grasph-store.tar.xz</code></pre></li>
+  <li><b class="w">Give the server a placeholder model key.</b> The server will not start without a value in <code>OPENAI_API_KEY</code>. For graph queries the value is never used, so any text is fine. Do not put a real key here.
+<pre><code>$env:OPENAI_API_KEY = "sk-not-a-real-key"</code></pre></li>
+  <li><b class="w">Start the server on the folder,</b> with the limits raised (see below why).
+<pre><code>Windows (PowerShell):
+bin\graphdb-server.exe --port 7474 --admin-password olist-local-1 `
+  --data-dir grasph-data --native-data-dir grasph-data\native-data `
+  --query-timeout-secs 3600 --max-path-bindings 5000000 `
+  --max-materialized-bindings 5000000 --max-result-rows 5000000</code></pre>
+  Wait for the line <code>Grasph ready - listening on 127.0.0.1:7474</code>. The first start does two jobs one time only: it builds the text index again from all 568,960 nodes, and it builds a vector index for the namespace (the log counts up to 128,136). Allow 15 minutes and do not close the window. A later start takes a few minutes. Leave the window open: the server runs in it. Stop it with Ctrl+C.</li>
+  <li><b class="w">Check it,</b> in a second window.
+<pre><code>$env:GRASPH_PASSWORD = "olist-local-1"
+python grasph_client.py</code></pre>
+  It must print <code>'node_count': 568960, 'relationship_count': 774266</code> and the nine labels with their counts. This takes about a minute.</li>
+</ol>
+<h3>On a Mac: run the Linux program in Docker</h3>
+<p>There is no Grasph program for macOS. The folder has the Linux program of the demo server and the libraries that it needs. Docker runs them on a Mac. Install Docker Desktop, unpack the dump as in step 1, and then, in the Terminal, in this folder:</p>
+<pre><code>xz -d bin/graphdb-server-linux.xz
+chmod +x bin/graphdb-server-linux
+tar -xf bin/linux-libs.tar.xz -C bin
+
+docker run --rm -it --platform linux/amd64 -p 127.0.0.1:7474:7474 \
+  -e OPENAI_API_KEY=sk-not-a-real-key -e LD_LIBRARY_PATH=/pack/bin/linux-libs \
+  -v "$PWD":/pack -w /pack ubuntu:26.04 \
+  bin/graphdb-server-linux --host 0.0.0.0 --port 7474 --admin-password olist-local-1 \
+  --data-dir grasph-data --native-data-dir grasph-data/native-data \
+  --query-timeout-secs 3600 --max-path-bindings 5000000 \
+  --max-materialized-bindings 5000000 --max-result-rows 5000000</code></pre>
+<p>Then check it in a second Terminal window: <code>GRASPH_PASSWORD=olist-local-1 python3 grasph_client.py</code></p>
+<div class="caution"><p>The Mac route was not tested on a Mac. What was tested: the Linux program with these libraries opens this dump on the demo machine (Ubuntu 26.04) in 9 seconds, with the right totals. On a Mac with an Apple chip, Docker translates the program, so expect it to be slower. If it does not start, send the last lines that it printed.</p></div>
+<div class="tw"><table>
+<tr><th></th><th>Windows program</th><th>Linux program (Mac, in Docker)</th></tr>
+<tr><td>Build</td><td>development branch, 2026-10-07 (newer)</td><td>the build of the demo server, 2026-10-06</td></tr>
+<tr><td>Login</td><td colspan="2">user <code>admin</code>, password = the one you give with <code>--admin-password</code></td></tr>
+<tr><td>First start</td><td>one-time index work, see step 3</td><td>no index work</td></tr>
+<tr><td>Filter and the 10,000 limit</td><td>the filter runs first</td><td>the limit cuts first (see below)</td></tr>
+</table></div>
+<div class="caution"><p>Use one program on one unpacked copy. The Windows program changes the indexes of the folder at its first start. Do not open that folder with the Linux program after that. Unpack the archive again for a clean copy.</p></div>
+<div class="warning"><p>The server listens on <code>127.0.0.1</code> only: your own computer. Keep it so. On Windows, do not add <code>--host 0.0.0.0</code>. (In the Docker command the program must listen on all addresses inside the container; <code>-p 127.0.0.1:7474:7474</code> is what keeps it on your own computer.) A copy of the database with a known password must not be reachable from the network.</p></div>
+
+<h3>Why the limits are raised</h3>
+<div class="tw"><table>
+<tr><th>Limit</th><th>Default</th><th>What happens at the default</th></tr>
+<tr><td><code>--max-path-bindings</code>, <code>--max-result-rows</code></td><td>10,000</td><td>A query returns at most 10,000 rows: a query for all 99,441 orders gives 10,000. With the Linux program the cut also comes <b>before</b> the <code>WHERE</code>: a filter on the orders looks at the first 10,000 only and returns about a tenth of the true rows.</td></tr>
+<tr><td><code>--query-timeout-secs</code></td><td>30</td><td>A count over all customers, or over one relationship type, takes longer than 30 seconds and fails.</td></tr>
+</table></div>
+<div class="caution"><p>A result that was cut short has <code>"truncated": true</code> in the reply, and it still looks like a normal result. Always check that field. <code>grasph_client.py</code> does this for you: it raises an error and does not return a short result.</p></div>
+
+<h3>What the dump was checked against</h3>
+<div class="tw"><table>
+<tr><th>Check</th><th>Result</th></tr>
+<tr><td>Totals of the copy against the live demo server</td><td>568,960 nodes and 774,266 relationships on both.</td></tr>
+<tr><td>Each node against its row in the source CSV file, all 568,960</td><td>0 nodes that differ from the source. One node for each key, in all 9 labels.</td></tr>
+<tr><td>Each relationship: do the two ends have the same key value? All 774,266</td><td>0 with unequal keys. The count of each type is equal to the join of the two files.</td></tr>
+<tr><td>180 lookups on the live demo server by key, ids included</td><td>0 differences.</td></tr>
+<tr><td>The archive in this folder, opened with the Windows program: each property of each node and both ends of each relationship, against the checked export</td><td>0 differences in 568,960 nodes and 774,266 relationships.</td></tr>
+<tr><td>Control: one value changed on purpose</td><td>Each check found it.</td></tr>
+</table></div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.7</span>Query the data in Grasph</h2>
+<p class="lead">Grasph speaks GQL, and most Cypher that you know works as it is. You send a query over HTTP and you get rows back.</p>
+<div class="tw"><table>
+<tr><th>Step</th><th>Request</th><th>Reply</th></tr>
+<tr><td>Log in</td><td><code>POST /api/v1/auth/login</code> with <code>{"username": "admin", "password": "…"}</code></td><td><code>{"token": "…"}</code></td></tr>
+<tr><td>Query</td><td><code>POST /api/v1/query</code> with <code>{"query": "MATCH …"}</code> and the header <code>Authorization: Bearer &lt;token&gt;</code></td><td><code>{"columns": […], "rows": [[…], …], "row_count": n, "truncated": …}</code></td></tr>
+</table></div>
+<p>In Python, <code>grasph_client.py</code> does both steps:</p>
+<pre><code>from grasph_client import Grasph
+
+g = Grasph(password="olist-local-1")
+reply = g.query("MATCH (o:Order) RETURN o.order_status AS status, count(o) AS orders ORDER BY orders DESC")
+reply["columns"]      # ['status', 'orders']
+reply["rows"]         # [['delivered', 96478], ['shipped', 1107], ...]</code></pre>
+<h3>Queries to start with</h3>
+<div class="tw"><table>
+<tr><th>Question</th><th>Query</th><th>Answer</th></tr>
+<tr><td>How many orders in each status?</td><td><code style="white-space:normal">MATCH (o:Order) RETURN o.order_status AS status, count(o) AS orders ORDER BY orders DESC</code></td><td>8 rows: delivered 96,478 · shipped 1,107 · canceled 625 …</td></tr>
+<tr><td>How many reviews for each score?</td><td><code style="white-space:normal">MATCH (v:Review) RETURN v.review_score AS score, count(v) AS reviews ORDER BY score DESC</code></td><td>5 rows: 5 → 56,910 · 4 → 19,007 · 3 → 8,097 …</td></tr>
+<tr><td>What is in one order, and who sold it?</td><td><code style="white-space:normal">MATCH (o:Order)-[:HAS_ITEM]-&gt;(i:OrderItem)-[:SOLD_BY]-&gt;(s:Seller) WHERE o.order_id = '0758eac62489b47a99c64b7d67c5ff18' RETURN i.order_item_id, i.price, s.seller_id, s.seller_city</code></td><td>3 items, from 2 sellers (sao paulo, maringa)</td></tr>
+<tr><td>Which sellers in one state earn the most?</td><td><code style="white-space:normal">MATCH (i:OrderItem)-[:SOLD_BY]-&gt;(s:Seller) WHERE s.seller_state = 'RJ' RETURN s.seller_id AS seller, count(i) AS items, sum(i.price) AS revenue ORDER BY revenue DESC LIMIT 5</code></td><td>first row: 542 items, R$ 128,111.19</td></tr>
+<tr><td>Which Customer nodes are one person?</td><td><code style="white-space:normal">MATCH (c:Customer) WHERE c.customer_unique_id = '8d50f5eadf50201ccdcedfb9e2ac8455' RETURN c.customer_id, c.customer_city</code></td><td>17 rows: this person has 17 orders, the most in the data</td></tr>
+<tr><td>Which seller sells which product? (a path of two hops as pairs of node ids)</td><td><code style="white-space:normal">MATCH (s:Seller)&lt;-[:SOLD_BY]-(i:OrderItem)-[:ITEM_OF_PRODUCT]-&gt;(p:Product) RETURN id(s), id(p)</code></td><td>112,650 rows, one for each item sold</td></tr>
+</table></div>
+<p>All six ran on the dump with the Windows program on 2026-10-08. The first five take from under a second to 16 seconds. The last one took 19 seconds.</p>
+<h3>Four rules for queries on this server</h3>
+<ol class="steps">
+  <li><b class="w">Return properties, not whole nodes.</b> <code>RETURN s</code> sends each property of the node, and 128,136 nodes have a vector of 1,536 numbers for the text search: about 20 KB of text for each node. Write <code>RETURN s.seller_id, s.seller_city</code>.</li>
+  <li><b class="w">Name the label on each node of a pattern.</b> <code>MATCH (o:Order)-[:HAS_ITEM]-&gt;(i:OrderItem)</code> starts from one label. <code>MATCH (n)</code> with no label reads all 568,960 nodes into memory.</li>
+  <li><b class="w">To draw a relationship or to get its ends, return it.</b> <code>RETURN r</code> gives <code>{"id", "from", "to", "rel_type", "properties"}</code>, where <code>from</code> and <code>to</code> are node ids. <code>id(n)</code> gives the id of a node.</li>
+  <li><b class="w">Expect some queries to be slow.</b> A read of the whole Customer label takes about eight times as long as a read of the Order label, which has the same number of nodes (40 seconds against 5 in our test). A pull of one whole relationship type takes about a minute. This is a known weakness of this build, not an error in your query.</li>
+</ol>
+<div class="note"><p>What you find slow, wrong or missing while you work is useful to the team. Write it down with the query and the time. Grasph is the product: a clear report of a problem in it is a result.</p></div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.8</span>Pull data into Python and run an algorithm</h2>
+<p class="lead">With Neo4j, the projection and the algorithm ran inside the server. Grasph has no GDS library today. So you pull the nodes and relationships that you need out of Grasph, and the projection and the algorithm run in your Python program.</p>
+<div class="tw"><table>
+<tr><th>What you did with Neo4j</th><th>What you do here</th></tr>
+<tr><td><code>GraphDatabase.driver("bolt://…")</code></td><td><code>g = Grasph(password=…)</code></td></tr>
+<tr><td><code>session.run("MATCH …")</code></td><td><code>g.query("MATCH …")</code></td></tr>
+<tr><td><code>gds.graph.project('g', labels, types)</code></td><td><code>g.rels("TYPE")</code> for each type that you need, then build the graph in a graph library (NetworkX, igraph)</td></tr>
+<tr><td>A Cypher projection over two or three hops</td><td>A query that returns the two end ids of the path: <code>MATCH (s:Seller)&lt;-[:SOLD_BY]-(i:OrderItem)-[:ITEM_OF_PRODUCT]-&gt;(p:Product) RETURN id(s), id(p)</code></td></tr>
+<tr><td><code>CALL gds.&lt;algorithm&gt;.stream(…)</code></td><td>The function of the graph library. You choose the library and the function.</td></tr>
+<tr><td><code>.write</code> back to the graph</td><td>Save a file with the node id in the first column. Writing results back into Grasph is not part of this work.</td></tr>
+</table></div>
+<pre><code>g = Grasph(password="olist-local-1")
+g.schema("olist")                 # labels, properties, relationship types and their key columns
+g.label_counts("olist")           # {'Customer': 99441, 'Geolocation': 19015, ...}
+sellers = g.nodes("Seller")       # [{'_id': 564843, 'seller_id': '3442f8...', 'seller_city': 'campinas', ...}, ...]
+sold_by = g.rels("SOLD_BY")       # [{'id': ..., 'from': &lt;OrderItem id&gt;, 'to': &lt;Seller id&gt;, 'properties': {}}, ...]</code></pre>
+<p><code>g.nodes(label)</code> asks for the properties by name, so the vectors never travel. In our test a whole label came in 1 to 40 seconds and a whole relationship type in 45 to 100 seconds.</p>
+<h3>One worked example</h3>
+<p><code>example_first_algorithm.py</code> pulls the <code>IN_CATEGORY</code> relationships, builds an undirected graph of products and categories, and computes the degree of each category. Then it asks Grasph the same thing with a query, so that you can see that the two answers are equal. It is the smallest full path from the database to an algorithm. Read it, run it, and then replace each of its three steps with your own.</p>
+<pre><code>projected graph: 32,399 nodes, 32,328 edges
+  bed_bath_table           3,029
+  sports_leisure           2,867
+  furniture_decor          2,657
+  health_beauty            2,444
+  housewares               2,335
+the same from a query: [['bed_bath_table', 3029], ['sports_leisure', 2867], ['furniture_decor', 2657], ['health_beauty', 2444], ['housewares', 2335]]</code></pre>
+<div class="pair">
+  <div class="term">Projection</div>
+  <div class="s"><span class="tag">SIMPLE</span><p>You decide what counts as a connection, before any algorithm runs. "Both sellers are in the housewares category" and "both sellers sell the very same product" are two different connections, and they give two different graphs.</p></div>
+  <div class="t"><span class="tag">TECHNICAL</span><p>The sub-graph that an algorithm sees: chosen labels and relationship types, often with a path of two or three hops made into one edge, and often with direction dropped. On this schema the stored graph is rarely the right input as it is: see the facts in TASK 11.5.</p></div>
+</div>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.9</span>Report a result that others can trust</h2>
+<p class="lead">A graph algorithm always returns a number. These six rules separate a number from a finding.</p>
+<ol class="steps">
+  <li><b class="w">Name the projection.</b> Write which labels and relationship types the algorithm saw, and the number of nodes and edges of that graph. "Louvain on Olist" is not a method.</li>
+  <li><b class="w">Run each random method with several seeds.</b> Louvain, Leiden, sampled betweenness and label propagation start from a random state. Report the range over the runs, not one run.</li>
+  <li><b class="w">Put a simple count next to each score.</b> When a centrality score gives the same order as a plain count of links, say so. The simple count is then the result.</li>
+  <li><b class="w">Ask whether chance gives the same.</b> Shuffle the thing that you test and compute the number again, many times. Your number is a finding only when the shuffled numbers are rarely as large.</li>
+  <li><b class="w">Say how many.</b> "28% of 65 pairs" and "28% of 65,000 pairs" are not the same strength.</li>
+  <li><b class="w">Check your pull against Grasph.</b> Count the same thing with a query on the server, as the example does. When the two numbers differ, the error is in the pull or in the projection.</li>
+</ol>
+</section>
+
+<section>
+<h2><span class="tk">TASK 11.10</span>Know the answers to the common questions</h2>
+<div class="ask"><h4>If you ask</h4>
+  <div class="q"><b>"Can I connect to the demo server?"</b>
+    <p>No. You have the same database on your own computer. Work there.</p></div>
+  <div class="q"><b>"Can I use my Neo4j GDS code?"</b>
+    <p>The queries, mostly yes. The <code>gds.*</code> calls, no: Grasph has no GDS library today. The table in TASK 11.8 shows what replaces each step.</p></div>
+  <div class="q"><b>"The server does not start."</b>
+    <p>Read the last lines that it printed. The three usual causes: <code>OPENAI_API_KEY</code> is not set in that window; <code>--admin-password</code> is missing; or a second server already uses the folder or the port.</p></div>
+  <div class="q"><b>"My query returned exactly 10,000 rows," or fewer rows than I expect.</b>
+    <p>The server was started without the raised limits, and the result was cut. Stop it and start it with the command in TASK 11.6.</p></div>
+  <div class="q"><b>"Why are there as many customers as orders?"</b>
+    <p>Olist gives a new <code>customer_id</code> for each order. Use <code>customer_unique_id</code> for the person: 96,096 people.</p></div>
+  <div class="q"><b>"My count of reviews is different from what I read about this dataset."</b>
+    <p>The file has 99,224 rows and 98,410 different review ids. The graph has one node for each id.</p></div>
+  <div class="q"><b>"My zip codes have four digits."</b>
+    <p>The first zero was lost, because the server holds the prefix as a number. Write <code>str(z).zfill(5)</code>.</p></div>
+  <div class="q"><b>"Is this real data?"</b>
+    <p>Yes. They are real orders, which Olist made public after it removed the names of people, shops and products. So there is no name to show: a seller is an id, a city and a state.</p></div>
+  <div class="q"><b>"Can I change the data, or load my own?"</b>
+    <p>It is your copy, so nothing on the demo server changes. But then your counts are not the counts on this page. Keep the archive, so that you can unpack a clean copy.</p></div>
+  <div class="q"><b>"Can I use the question-answering or the text search of Grasph?"</b>
+    <p>Not with the placeholder key. They call a language model. Graph queries need no key.</p></div>
+</div>
+</section>
+
+</main>
+</div>
+<script src="manual.js"></script>
+</body>
+</html>

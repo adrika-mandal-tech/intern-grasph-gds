@@ -1,0 +1,5 @@
+{
+  "platform_url": "http://100.23.76.198",
+  "token_obtained": false,
+  "error": "Could not authenticate to live Grasph platform (admin/admin returned UNAUTHORIZED on retries). Live cross-check skipped; source-CSV provenance (manual verified 0 diff vs live) is documented in p2."
+}

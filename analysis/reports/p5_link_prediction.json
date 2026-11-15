@@ -1,0 +1,313 @@
+{
+  "split_date": "2018-06-01",
+  "seller_seller": {
+    "name": "seller_shared_products",
+    "candidates": 153287,
+    "test_edges": 67,
+    "prevalence": 5.218968340433305e-05,
+    "CN": {
+      "auc": 0.7458029964965847,
+      "ap": 0.0054143284473412824
+    },
+    "Jaccard": {
+      "auc": 0.745129795992928,
+      "ap": 0.004433410452794797
+    },
+    "AA": {
+      "auc": 0.7464158495292897,
+      "ap": 0.007532213124106239
+    },
+    "PA": {
+      "auc": 0.514578807273012,
+      "ap": 0.00016027547768083513
+    }
+  },
+  "product_product": {
+    "name": "product_bought_together",
+    "candidates": 200000,
+    "test_edges": 96,
+    "prevalence": 5e-06,
+    "CN": {
+      "auc": 0.4998149990749954,
+      "ap": 7.659255060852781e-06
+    },
+    "Jaccard": {
+      "auc": 0.4998149990749954,
+      "ap": 7.659255060852781e-06
+    },
+    "AA": {
+      "auc": 0.4998149990749954,
+      "ap": 7.659255060852781e-06
+    },
+    "PA": {
+      "auc": 0.16526332631663157,
+      "ap": 6.397625201525194e-06
+    }
+  },
+  "association_rules": {
+    "n_multi_baskets": 3236,
+    "n_total_orders": 98666,
+    "top_rules": [
+      {
+        "antecedent": [
+          "1dc7685f4fdb9622d84ae2ec658d5bbf"
+        ],
+        "consequent": [
+          "e256d05115f9eb3766f3ab752132a4e2"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.6666666666666666,
+        "lift": 539.3333333333334,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "e256d05115f9eb3766f3ab752132a4e2"
+        ],
+        "consequent": [
+          "1dc7685f4fdb9622d84ae2ec658d5bbf"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 1.0,
+        "lift": 539.3333333333334,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "e6b314a2236c162ede1a879f1075430f"
+        ],
+        "consequent": [
+          "ad4b5def91ac7c575dbdf65b5be311f4"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 539.3333333333334,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "ad4b5def91ac7c575dbdf65b5be311f4"
+        ],
+        "consequent": [
+          "e6b314a2236c162ede1a879f1075430f"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 539.3333333333334,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "5d790355cbeded0cd60e25cbc4c527a2"
+        ],
+        "consequent": [
+          "5fc3e6a4b52b0c414458104ed4037f1c"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 539.3333333333334,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "5fc3e6a4b52b0c414458104ed4037f1c"
+        ],
+        "consequent": [
+          "5d790355cbeded0cd60e25cbc4c527a2"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 539.3333333333334,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "5b8a5a9417210b1b84b67b9a7aefb935"
+        ],
+        "consequent": [
+          "e5ae72c62ebfa708624f5029d609b160"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 462.2857142857143,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "dbb67791e405873b259e4656bf971246"
+        ],
+        "consequent": [
+          "18486698933fbb64af6c0a255f7dd64c"
+        ],
+        "support_cond": 0.0021631644004944375,
+        "support_all_orders": 7.094642531368455e-05,
+        "confidence": 1.0,
+        "lift": 462.2857142857143,
+        "count_in_multi": 7
+      },
+      {
+        "antecedent": [
+          "18486698933fbb64af6c0a255f7dd64c"
+        ],
+        "consequent": [
+          "dbb67791e405873b259e4656bf971246"
+        ],
+        "support_cond": 0.0021631644004944375,
+        "support_all_orders": 7.094642531368455e-05,
+        "confidence": 1.0,
+        "lift": 462.2857142857143,
+        "count_in_multi": 7
+      },
+      {
+        "antecedent": [
+          "0d85c435fd60b277ffb9e9b0f88f927a"
+        ],
+        "consequent": [
+          "ee57070aa3b24a06fdd0e02efd2d757d"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 462.2857142857143,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "e5ae72c62ebfa708624f5029d609b160"
+        ],
+        "consequent": [
+          "5b8a5a9417210b1b84b67b9a7aefb935"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 0.8571428571428571,
+        "lift": 462.2857142857142,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "ee57070aa3b24a06fdd0e02efd2d757d"
+        ],
+        "consequent": [
+          "0d85c435fd60b277ffb9e9b0f88f927a"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 0.8571428571428571,
+        "lift": 462.2857142857142,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "5526b1ae9ab2688cf600783cece249df"
+        ],
+        "consequent": [
+          "1427b126f61597524866770b05d4eed2"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.8,
+        "lift": 431.4666666666667,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "1427b126f61597524866770b05d4eed2"
+        ],
+        "consequent": [
+          "5526b1ae9ab2688cf600783cece249df"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.6666666666666666,
+        "lift": 431.46666666666664,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "0fa81e7123fd0ebe03adbbe99d912827"
+        ],
+        "consequent": [
+          "fb783e3e545937820b57fe539b2c5a6c"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.4444444444444444,
+        "lift": 359.55555555555554,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "fb783e3e545937820b57fe539b2c5a6c"
+        ],
+        "consequent": [
+          "0fa81e7123fd0ebe03adbbe99d912827"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 1.0,
+        "lift": 359.55555555555554,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "060cb19345d90064d1015407193c233d"
+        ],
+        "consequent": [
+          "98d61056e0568ba048e5d78038790e77"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 1.0,
+        "lift": 323.6,
+        "count_in_multi": 6
+      },
+      {
+        "antecedent": [
+          "57f2bc497c1a3ebe41ba7a06d78ed159"
+        ],
+        "consequent": [
+          "060f0122cdc8f25db4a0d7359fdae7b0"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.5,
+        "lift": 323.6,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "060f0122cdc8f25db4a0d7359fdae7b0"
+        ],
+        "consequent": [
+          "57f2bc497c1a3ebe41ba7a06d78ed159"
+        ],
+        "support_cond": 0.0012360939431396785,
+        "support_all_orders": 4.0540814464962604e-05,
+        "confidence": 0.8,
+        "lift": 323.6,
+        "count_in_multi": 4
+      },
+      {
+        "antecedent": [
+          "98d61056e0568ba048e5d78038790e77"
+        ],
+        "consequent": [
+          "060cb19345d90064d1015407193c233d"
+        ],
+        "support_cond": 0.001854140914709518,
+        "support_all_orders": 6.08112216974439e-05,
+        "confidence": 0.6,
+        "lift": 323.59999999999997,
+        "count_in_multi": 6
+      }
+    ]
+  }
+}

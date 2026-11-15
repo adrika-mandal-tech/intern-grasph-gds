@@ -1,0 +1,135 @@
+{
+  "source": "Raw local CSVs; NOT a verified Grasph graph snapshot",
+  "date_window": {
+    "start": "2016-09",
+    "end": "2018-10"
+  },
+  "projections": [
+    {
+      "name": "seller_shared_products",
+      "nodes": {
+        "n_nodes": 3095,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 1061,
+        "cap_applied": false
+      },
+      "weight": "# distinct products sold by both sellers",
+      "candidate_pairs_estimated": 1897
+    },
+    {
+      "name": "seller_shared_categories",
+      "nodes": {
+        "n_nodes": 3095,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 724613,
+        "cap_applied": false
+      },
+      "weight": "# distinct categories both sellers sell",
+      "candidate_pairs_estimated": 821642
+    },
+    {
+      "name": "seller_co_order",
+      "nodes": {
+        "n_nodes": 3095,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 1151,
+        "cap_applied": false
+      },
+      "weight": "# orders containing both sellers",
+      "candidate_pairs_estimated": 1419
+    },
+    {
+      "name": "product_bought_together",
+      "nodes": {
+        "n_nodes": 32951,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 4058,
+        "cap_applied": false
+      },
+      "weight": "# orders containing both products (repeated units not counted twice)",
+      "candidate_pairs_estimated": 4481
+    },
+    {
+      "name": "category_shared_sellers",
+      "nodes": {
+        "n_nodes": 74,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 1435,
+        "cap_applied": false
+      },
+      "weight": "# sellers selling in both categories",
+      "candidate_pairs_estimated": 10690
+    },
+    {
+      "name": "product_same_category",
+      "nodes": {
+        "n_nodes": 32951,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 0,
+        "cap_applied": false,
+        "storage": "membership_groups_only"
+      },
+      "weight": "# products in the same category (clique)",
+      "candidate_pairs_estimated": 26829566
+    },
+    {
+      "name": "product_same_seller",
+      "nodes": {
+        "n_nodes": 32951,
+        "isolates_kept": true
+      },
+      "edges": {
+        "n_edges": 1097660,
+        "cap_applied": false,
+        "storage": "expanded_edges"
+      },
+      "weight": "# products sold by the same seller (clique)",
+      "candidate_pairs_estimated": 1101043
+    },
+    {
+      "name": "order_product_incidence",
+      "nodes": {
+        "n_orders_with_items": 98666,
+        "n_products": 32951
+      },
+      "edges": {
+        "n_edges": 102425
+      },
+      "weight": "units and summed item price",
+      "candidate_pairs_estimated": null
+    },
+    {
+      "name": "person_projection",
+      "nodes": {
+        "n_people_with_orders": 95420,
+        "n_people_total": 96096
+      },
+      "edges": {
+        "n_orders": 98666
+      },
+      "weight": "orders per person; products/sellers are distinct membership",
+      "candidate_pairs_estimated": null
+    }
+  ],
+  "inputs_sha256": {
+    "olist_order_items_dataset.csv": "0bc4d068c4fe38cbb01bd90e8746e3c613fe7b4baef75fab7b0e329701c3e279",
+    "olist_products_dataset.csv": "3e6569628a17fbc75fd206ee357b59e20364b9afa90f5b6cd5b4d624c58aa9cc",
+    "olist_sellers_dataset.csv": "1f643d2b950373b85735e7794b20986f528d7a000432e7c6f9bcbb44d0846a0e",
+    "olist_customers_dataset.csv": "983a422239e1712ded753b3bf9ecf47dc73f144d306029dcfa99e70a226883d2",
+    "olist_orders_dataset.csv": "8df58ef3d2d7e9944010f7beecd9b75367f5588ec6e3c91cec19ae3345ef9ecf",
+    "product_category_name_translation.csv": "a81f0d1f27b27e7293f761bc79e3ce8f348ee39c4b3ed3e49bde38f478586278"
+  },
+  "dense_policy": "cliques expand only below 3,000,000 edges"
+}

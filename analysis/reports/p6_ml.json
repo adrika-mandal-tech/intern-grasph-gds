@@ -1,0 +1,36 @@
+{
+  "n_total": 112650,
+  "n_late": 7265,
+  "prevalence": 0.06449178872614292,
+  "late_delivery": {
+    "n_train": 78855,
+    "n_test": 33795,
+    "prevalence_train": 0.06430790691776045,
+    "prevalence_test": 0.06492084627903535,
+    "auc_hgb": 0.7758034987123085,
+    "ap_hgb": 0.24660412876247734,
+    "auc_logistic": 0.6593274369627653,
+    "auc_minus_random": 0.27580349871230847,
+    "ap_minus_prevalence": 0.18168328248344198
+  },
+  "review_score": {
+    "n": 111159,
+    "mean": 4.035
+  },
+  "review_score_without_graph": {
+    "n_train": 77812,
+    "n_test": 33347,
+    "mae": 0.973906789935633,
+    "mae_baseline_mean": 1.0566951111705645,
+    "r2": 0.0806591954696323,
+    "baseline_gain_mae": 0.08278832123493152
+  },
+  "review_score_with_graph": {
+    "n_train": 77812,
+    "n_test": 33347,
+    "mae": 0.9709595561643807,
+    "mae_baseline_mean": 1.0566951111705645,
+    "r2": 0.08211405796756888,
+    "baseline_gain_mae": 0.0857355550061838
+  }
+}

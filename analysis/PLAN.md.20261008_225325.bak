@@ -1,0 +1,26 @@
+# Olist on Grasph — analysis plan (phase-gated)
+
+Source: server `http://100.23.76.198` (admin/admin), raw CSVs in `../Olist-Kaggle-dataset/`,
+manual in `../olist-graph-manual.html`. Expected: **568,960 nodes / 774,266 relationships, 9 labels / 9 types**.
+
+| Phase | Task | Gate (must pass before advancing) | Status |
+|---|---|---|---|
+| P0 | Setup: python, packages, server reachable | `status.node_count == 568960 and relationship_count == 774266` | [ ] |
+| P1 | Pull & cache all labels + rel types to parquet | cached row counts == manual counts (assertions in `pull_cache.py`) | [ ] |
+| P2 | Task 1 — profiling & integrity | 0 orphan FKs; 96,096 people; 98,410 review ids; 19,015 zip nodes | [ ] |
+| P3 | Task 2 — descriptive stats & distributions | money sums == manual (16,008,872.12 / 13,591,643.70 / 2,251,909.54) | [ ] |
+| P4 | Task 3 — centrality on seller projection | projection built; PageRank/k-core vs plain count table | [ ] |
+| P5 | Task 4 — community detection | >=10 seeds, modularity range, baseline comparison | [ ] |
+| P6 | Task 5 — link prediction (time split) | AUC/AP on 2018-06+ held-out links | [ ] |
+| P7 | Task 6 — ML with graph features | ablation: properties vs properties+graph features | [ ] |
+| P8 | Task 7 — NLP / embeddings on reviews | sentiment-vs-score consistency table | [ ] |
+| P9 | Task 8 — null test + final report | one key finding passes permutation test; report per TASK 11.9 | [ ] |
+
+Rules (manual TASK 11.9): name every projection with node/edge counts; multi-seed randomised algos;
+plain count next to each score; permutation/null test; state denominators; cross-check pulls vs server queries.
+
+Layout:
+- `pull_cache.py` — Phase 1 puller (env GRASPH_URL/USER/PASSWORD)
+- `cached/` — parquet cache of labels + relationships
+- `tasks/taskNN_*.py` — one script per task, each self-validates (asserts) before exit 0
+- `reports/` — produced tables/summaries

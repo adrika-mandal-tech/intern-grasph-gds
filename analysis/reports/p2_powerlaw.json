@@ -1,0 +1,128 @@
+{
+  "source": "Raw local CSVs; NOT a verified Grasph graph snapshot",
+  "method": "Clauset-Shalizi-Newman continuous power-law fit; xmin by KS; exponent by MLE; p by semi-parametric bootstrap; competitors by per-point log-likelihood-ratio (Vuong)",
+  "seed": 20261009,
+  "bootstrap_reps": 300,
+  "min_tail": 50,
+  "limitations": [
+    "Counts are discrete; the continuous power law is an approximation.",
+    "Item incidence is not projected graph degree.",
+    "A large goodness-of-fit p does not prove a power law; it fails to reject it.",
+    "Person order counts are right-censored: the window ends 2018-08.",
+    "Lognormal/exponential fits use maximum likelihood with location fixed at 0."
+  ],
+  "distributions": [
+    {
+      "distribution": "seller_item_incidence",
+      "n": 3095,
+      "denominator": "3,095 sellers with >=1 item",
+      "counts": {
+        "entities": 3095,
+        "items": 112650,
+        "top_n": 30,
+        "top_share": 0.26423435419440744
+      },
+      "fit": {
+        "xmin": 121.0,
+        "alpha": 2.3811651936087896,
+        "D": 0.04560885734073494,
+        "n_tail": 200,
+        "goodness_of_fit_p": 0.59,
+        "competitors": {
+          "lognormal": {
+            "R": 0.31970249335772305,
+            "p": 9.28810905552221e-12
+          },
+          "exponential": {
+            "R": 0.6052591724768053,
+            "p": 1.082605128394929e-31
+          }
+        }
+      }
+    },
+    {
+      "distribution": "product_item_incidence",
+      "n": 32951,
+      "denominator": "32,951 products sold in >=1 item",
+      "counts": {
+        "entities": 32951,
+        "items": 112650,
+        "top_n": 329,
+        "top_share": 0.22088770528184642
+      },
+      "fit": {
+        "xmin": 31.0,
+        "alpha": 2.625146416152546,
+        "D": 0.03579577416188051,
+        "n_tail": 368,
+        "goodness_of_fit_p": 0.5566666666666666,
+        "competitors": {
+          "lognormal": {
+            "R": 0.3435376743733208,
+            "p": 1.6462312312470892e-19
+          },
+          "exponential": {
+            "R": 0.699114494433968,
+            "p": 4.3219898926021276e-69
+          }
+        }
+      }
+    },
+    {
+      "distribution": "person_order_count",
+      "n": 96096,
+      "denominator": "96,096 unique people (customer_unique_id)",
+      "counts": {
+        "entities": 96096,
+        "items": 99441,
+        "top_n": 960,
+        "top_share": 0.02280749389084985
+      },
+      "fit": {
+        "xmin": 3.0,
+        "alpha": 12.325304593355543,
+        "D": 0.8055555555555556,
+        "n_tail": 252,
+        "goodness_of_fit_p": 0.0,
+        "competitors": {
+          "lognormal": {
+            "R": 1.3177607217932072,
+            "p": 4.319337086279431e-48
+          },
+          "exponential": {
+            "R": 2.45828687139607,
+            "p": 4.114787404096607e-62
+          }
+        }
+      }
+    },
+    {
+      "distribution": "order_item_count",
+      "n": 98666,
+      "denominator": "98,666 orders with >=1 item",
+      "counts": {
+        "entities": 98666,
+        "items": 112650,
+        "top_n": 986,
+        "top_share": 0.043071460275188635
+      },
+      "fit": {
+        "xmin": 7.0,
+        "alpha": 4.646333973714571,
+        "D": 0.3793103448275862,
+        "n_tail": 58,
+        "goodness_of_fit_p": 0.0,
+        "competitors": {
+          "lognormal": {
+            "R": 0.5042954918833327,
+            "p": 3.1872372340730192e-06
+          },
+          "exponential": {
+            "R": 1.342841963060904,
+            "p": 3.1781718896057585e-22
+          }
+        }
+      }
+    }
+  ]
+}
